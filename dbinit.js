@@ -6,7 +6,14 @@ var knex = require('knex')({
     debug: true,
 });
 
-knex.schema.createTableIfNotExists('users', (table) => {
-  table.string('login').primary();
-  table.string('pass').notNullable();
-});
+(async function() {
+  await knex.schema.dropTableIfExists('users');
+
+  await knex.schema.createTable('users', (table) => {
+    table.string('login').primary();
+    table.string('pass').notNullable();
+    table.string('name');
+    table.string('color1', 10);
+    table.string('color2', 10);
+  });
+})();
