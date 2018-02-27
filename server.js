@@ -23,6 +23,28 @@ app.get('/', (req, res) => {
 });
 
 app.get('/signin', (req, res) => {
+  res.render('signin.html');
+});
+
+app.post('/signin', async (req, res) => {
+  var data = {
+    login: req.body.login,
+    pass: req.body.password,
+    name: req.body.name,
+    color1: req.body.color1,
+    color2: req.body.color2,
+  }
+  try {
+    if (data.login && data.password) {
+      await knex('users').insert(data);
+    }
+  } catch (err) {
+    if (err.code == 'SQLITE_CONSTRAINT') {
+      res.send('signin', { data: data, message: 'Login already taken' });
+    }
+    console.error(err);
+    res.status(500).send('Error');
+  }
 });
 
 app.get('/logout', (req, res) => {
@@ -32,6 +54,7 @@ app.get('/userlist', async (req, res) => {
   try {
     res.render('userlist.html', { users: await knex('users') });
   } catch (err) {
+    console.error(err);
     res.status(500).send('Error');
   }
 });
