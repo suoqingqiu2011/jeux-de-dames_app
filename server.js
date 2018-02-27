@@ -3,7 +3,7 @@ var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
 
-app.use(expre
+app.use('/public', express.static('public'));
 app.use(bodyP.urlencoded({ extended: false }));
 
 var nunjucks = require('nunjucks');
@@ -30,7 +30,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/userlist', async (req, res) => {
   try {
-    res.render('userlist.html', { rows: await knex('users') });
+    res.render('userlist.html', { users: await knex('users') });
   } catch (err) {
     res.status(500).send('Error');
   }

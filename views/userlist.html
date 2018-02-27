@@ -1,4 +1,6 @@
-{% extend base.html %}
+{% extends "base.html" %}
+
+{% block title %}Userlist{% endblock %}
 
 {% block main %}
 <table>
@@ -11,7 +13,7 @@
   <tr>
     <td>{{ user.login }}</td>
     <td>{{ user.name }}</td>
-    <td class="color" style="background-color:{{ user.color }}"></td>
+    <td><div class="color" style="background-color:{{ user.color1 }}"></div></td>
   </tr>
 {% endfor %}
 </table>

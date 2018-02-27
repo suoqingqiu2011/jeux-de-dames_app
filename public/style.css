@@ -1,0 +1,18 @@
+.color {
+  display: inline-block;
+  width: 2em;
+  height: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td, th {
+  padding: 0.5ex 1ex;
+}
+
+th:not(:first-child), td:not(:first-child) {
+  border-left: solid thin black;
+}
