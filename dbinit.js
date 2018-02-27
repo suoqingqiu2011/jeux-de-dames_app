@@ -6,7 +6,7 @@ var knex = require('knex')({
     debug: true,
 });
 
-(async function() {
+async function init() {
   await knex.schema.dropTableIfExists('users');
 
   await knex.schema.createTable('users', (table) => {
@@ -16,4 +16,8 @@ var knex = require('knex')({
     table.string('color1', 10);
     table.string('color2', 10);
   });
-})();
+  
+  knex.destroy();
+}
+init();
+
