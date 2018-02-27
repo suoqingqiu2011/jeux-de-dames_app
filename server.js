@@ -93,6 +93,7 @@ app.post('/', async (req, res) => {
   }).first();
   if (user) {
     req.session.user = user;
+    res.redirect('/userlist');
   } else {
     res.render('login.html', { 
       login: req.body.login,
