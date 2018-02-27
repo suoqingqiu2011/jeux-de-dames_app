@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="public/style.css">
   </head>
   <body>
+    <menu>
+      {% if current %}
+      <a href="/logout">Logout</a>
+      {% else %}
+      <a href="/signin">Signin</a>
+    </menu>
+    
     {% block main %}
     {% endblock %}
   </body>

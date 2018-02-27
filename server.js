@@ -24,21 +24,26 @@ var knex = require('knex')({
     debug: true,
 });
 
-app.get('/', (req, res) => {
+// Part 4
+
+app.get('/userlist', async (req, res) => {
   if (req.session.user) {
-    res.redirect('/userlist');
+    try {
+      res.render('userlist.html', { 
+        users: await knex('users'),
+        current: req.session.user,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error');
+    }
   } else {
-    res.render('login.html');
+    res.redirect('/');
   }
 });
 
-app.post('/', (req, res) => {
-  var data = {
-    login: req.body.login,
-    pass: req.body.password,
-  };
-  
-});
+
+// Part 5
 
 app.get('/signin', (req, res) => {
   res.render('signin.html');
@@ -70,21 +75,35 @@ app.post('/signin', async (req, res) => {
   }
 });
 
-app.get('/logout', (req, res) => {
+
+// Part 6
+
+app.get('/', (req, res) => {
+  if (req.session.user) {
+    res.redirect('/userlist');
+  } else {
+    res.render('login.html');
+  }
 });
 
-app.get('/userlist', async (req, res) => {
-  if (req.session.user) {
-
-    try {
-      res.render('userlist.html', { users: await knex('users') });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error');
-    }
+app.post('/', async (req, res) => {
+  var user = await knex('users').where({
+    login: req.body.login,
+    pass: req.body.password,
+  }).first();
+  if (user) {
+    req.session.user = user;
   } else {
-    res.redirect('/');
+    res.render('login.html', { 
+      login: req.body.login,
+      message: 'Wrong login or password',
+    });
   }
+});
+
+app.get('/logout', (req, res) => {
+  req.session.user = null;
+  res.redirect('/');
 });
 
 var listener = app.listen(process.env.PORT, function () {

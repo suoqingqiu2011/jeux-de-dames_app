@@ -16,3 +16,12 @@ td, th {
 th:not(:first-child), td:not(:first-child) {
   border-left: solid thin black;
 }
+
+.current {
+  font-weight: bold;
+}
+
+menu a {
+  display: inline-block;
+  padding: 0.5ex 1ex;
+}
