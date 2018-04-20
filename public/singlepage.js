@@ -1,17 +1,12 @@
-let $ = (selector) => document.querySelector(selector);
-let append = (element, tab) => element.appendChild(document.createElement(tab));
-
-let tab = document.querySelector('#main tbody');
-
+let main = document.querySelector('#main');
 
 async function loadUsers() {
   let res = await fetch('/sp/userlist');
   let users = await res.json();
 
-  nunjucks.configure('views', { autoescape: true });
-  let doc = nunjucks.render('userlist.html', { users: users });
-  console.log(doc);
-  document.body.innerHTML = doc;
+  nunjucks.configure('public/views', { autoescape: true });
+  let doc = nunjucks.render('sp.html', { users: users });
+  main.innerHTML = doc;
 
   /*
   tab.innerHTML = '';

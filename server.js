@@ -110,8 +110,6 @@ app.get('/logout', (req, res) => {
 
 // Part 7
 
-app.use('/views', express.static('views'));
-
 app.get('/sp', (req, res) => {
   res.render('singlepage.html');
 });

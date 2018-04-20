@@ -1,0 +1,36 @@
+{% if view == 'userlist' %}
+  <table>
+    <tr>
+      <th>Login</th>
+      <th>Name</th>
+      <th>Color</th>
+    </tr>
+  {% for user in users %}
+    <tr {% if user.name == current.name %}class="current"{% endif %}>
+      <td>{{ user.login }}</td>
+      <td>{{ user.name }}</td>
+      <td><div class="color" style="background-color:{{ user.color1 }}"></div></td>
+    </tr>
+  {% endfor %}
+  </table>
+{% elif view == 'signin' %}
+  <form id="signin" method="post" action="/sp/signin">
+    <input type="text" name="login" placeholder="login" value="{{ data.login }}">
+    <input type="password" name="password" placeholder="password" value="{{ data.password }}">
+    <input type="text" name="name" placeholder="name" value="{{ data.name }}">
+    <input type="color" name="color1" value="{{ data.color1 }}">
+    <input type="color" name="color2" value="{{ data.color2 }}">
+    <input type="submit" value="Create account">
+    <div class="message">
+      {{ message }}
+    </div>
+  </form>
+{% else %}
+  <form method="post">
+    <input type="text" name="login" placeholder="login" value="{{ data.login }}">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="login">
+
+    <div>{{ message }}</div>
+  </form>
+{% endif %}
