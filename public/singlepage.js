@@ -9,7 +9,8 @@ async function loadUsers() {
   let users = await res.json();
 
   nunjucks.configure('views', { autoescape: true });
-  let doc = nunjucks.render('userlist.html', { foo: 'bar' });
+  let doc = nunjucks.render('userlist.html', { users: users });
+  console.log(doc);
   document.body.innerHTML = doc;
 
   /*
@@ -24,5 +25,5 @@ async function loadUsers() {
   }*/
 }
 
-/loadUsers();
+loadUsers();
 
