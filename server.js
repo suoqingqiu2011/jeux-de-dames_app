@@ -13,7 +13,8 @@ app.use(session({
 
 var nunjucks = require('nunjucks');
 nunjucks.configure('views', {
-    express: app
+    express: app,
+    noCache: true,
 });
 
 var knex = require('knex')({
