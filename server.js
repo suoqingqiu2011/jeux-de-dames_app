@@ -109,7 +109,7 @@ app.get('/logout', (req, res) => {
 });
 
 // Part 7
-
+/* Work in progress
 app.get('/sp', (req, res) => {
   res.render('singlepage.html');
 });
@@ -122,6 +122,7 @@ app.get('/sp/userlist', async (req, res) => {
     res.status(500).send('Error');
   }
 });
+*/
 
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
