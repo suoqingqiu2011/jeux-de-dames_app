@@ -1,4 +1,5 @@
 var express = require('express');
+require('express-async-errors');
 var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
