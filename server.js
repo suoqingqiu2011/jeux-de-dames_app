@@ -119,6 +119,9 @@ wsserver.on('connection', (wsconn) => {
 
 // Part 4
 app.use('/', express.static('public'));
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
 
 app.get('/userlist', async (req, res) => {
   if (req.session.user) {
@@ -155,7 +158,7 @@ app.post('/signin', async (req, res) => {
     if (data.login 
         && data.pass
         && await knex('users').insert(data)) {
-      res.redirect('/');
+      res.redirect('/login');
     } else {
       res.render('signin.html', { data: data, message: 'Mauvaise donnée' });
     }
@@ -172,7 +175,7 @@ app.post('/signin', async (req, res) => {
 
 // Part 6
 
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
   if (req.session.user) {
     res.redirect('/userlist');
   } else {
