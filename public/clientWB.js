@@ -25,16 +25,16 @@ ws.addEventListener('open', function(e) {
       case 'userlist':
         if (status == 'available') {
           mainDiv.innerHTML = '';
-          mainDiv.appendChild(createUserList(parsed.userlist));
+          //mainDiv.appendChild(createUserList(parsed.userlist));
         }
         break;
       case 'challenge':
         status = 'playing'
         mainDiv.innerHTML = '';
-        append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
-        const button = append(mainDiv, 'button');
-        button.textContent = 'Quit';
-        button.className = 'quit'; 
+        //append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
+        //const button = append(mainDiv, 'button');
+        //button.textContent = 'Quit';
+        //button.className = 'quit'; 
         break;
       case 'challenge_rejected':
         alert('The invite was rejected');
