@@ -65,11 +65,11 @@ app.post('/signin', async (req, res) => {
         && await knex('users').insert(data)) {
       res.redirect('/');
     } else {
-      res.render('signin.html', { data: data, message: 'Bad data' });
+      res.render('signin.html', { data: data, message: 'Mauvaise donnée' });
     }
   } catch (err) {
     if (err.code == 'SQLITE_CONSTRAINT') {
-      res.render('signin.html', { data: data, message: 'Login already taken' });
+      res.render('signin.html', { data: data, message: 'Utilisateur connecté' });
     } else {
       console.error(err);
       res.status(500).send('Error');
@@ -99,7 +99,7 @@ app.post('/', async (req, res) => {
   } else {
     res.render('login.html', { 
       login: req.body.login,
-      message: 'Wrong login or password',
+      message: 'Mot de passe ou login incorrect',
     });
   }
 });
