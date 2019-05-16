@@ -14,7 +14,7 @@ td, th {
 }
 
 th:not(:first-child), td:not(:first-child) {
-  border-left: solid thin black;
+  border-left: solid thin green;
 }
 
 .current {
