@@ -34,7 +34,7 @@ ws.addEventListener('open', function(e) {
         append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
         const button = append(mainDiv, 'button');
         button.textContent = 'Quit';
-        button.className = 'quit';
+        button.className = 'quit'; 
         break;
       case 'challenge_rejected':
         alert('The invite was rejected');
