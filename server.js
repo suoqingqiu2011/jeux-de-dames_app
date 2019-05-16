@@ -4,7 +4,7 @@ var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
 
-app.use('/public', express.static('public'));
+
 app.use(bodyP.urlencoded({ extended: false }));
 app.use(session({
     secret: '12345',
@@ -63,7 +63,6 @@ wsserver.on('connection', (wsconn) => {
     switch (parsed.type) {
       case 'new_connection':
         const name = parsed.username;
-        connected_users[name] = myuser = new User(name, wsconn);
         wsserver.broadcastList();
         break;
       case 'challenge':
@@ -116,10 +115,10 @@ wsserver.on('connection', (wsconn) => {
   });
 });
 
-// Watch out for this: app.listen would break ws!
-server.listen(process.env.PORT);
+
 
 // Part 4
+app.use('/', express.static('public'));
 
 app.get('/userlist', async (req, res) => {
   if (req.session.user) {
@@ -201,7 +200,5 @@ app.get('/logout', (req, res) => {
   req.session.user = null;
   res.redirect('/');
 });
-
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+// Watch out for this: app.listen would break ws!
+server.listen(process.env.PORT);
