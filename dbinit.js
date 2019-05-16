@@ -20,8 +20,8 @@ async function init() {
   var cols = await knex('users').columnInfo();
   console.log('Columns:', cols);
   
-  await knex('users').insert({ login: 'foo', pass: '12345', name: 'Foo', color1: '#a30', color2: '#f10' });
-  await knex('users').insert({ login: 'bar', pass: 'superman', name: 'Bar', color1: '#aa0', color2: '#401' });
+  await knex('users').insert({ login: 'foo', pass: '12345', email: 'Foo', color1: '#a30', color2: '#f10' });
+  await knex('users').insert({ login: 'bar', pass: 'superman', email: 'Bar', color1: '#aa0', color2: '#401' });
   
   var rows = await knex('users');
   console.log('Rows:', rows);
