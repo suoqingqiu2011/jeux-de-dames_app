@@ -12,7 +12,7 @@ async function init() {
   await knex.schema.createTable('users', (table) => {
     table.string('login').primary();
     table.string('pass').notNullable();
-    table.string('name');
+    table.string('email');
     table.string('color1', 10);
     table.string('color2', 10);
   });

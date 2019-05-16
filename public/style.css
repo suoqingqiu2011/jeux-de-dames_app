@@ -25,3 +25,84 @@ menu a {
   display: inline-block;
   padding: 0.5ex 1ex;
 }
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 1em;
+  text-align: center;
+  background-image:url("https://cdn.glitch.com/0bc035cc-db7c-4178-99fa-8ac73fc4d288%2Fthumbnails%2Fjeux.jpg?1556896932369");
+  height: 80vh;
+  background-size:cover;
+  background-position:center;
+}
+.login-page{
+   width:250%;
+   padding:10% 0 0;
+   margin: auto;
+   position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:white;
+}
+.login-page h1{
+  float : left;
+  font-size: 40px ;
+  padding:10% 0 0;
+  border-bottom: 6px solid;
+  margin-bottom: 50px;
+
+}
+.form{
+  position: relative;
+  z-index:1;
+  background:rgba(7,40,195,0.8);
+  max-width: 360px;
+  margin:0 auto 100px;
+  padding:45px;
+  text-align: center;
+}
+.form input{
+  font-family:"Roboto" ,sans-serif;
+  outline: 1;
+  background:#f2f2f2;
+  width: auto;
+  border:0;
+  box-sizing:border-box;
+  margin: 0 0 15px;
+  padding:15px;
+  font-size:14px;
+  }
+
+
+.form  button{
+  font-family:"Roboto" ,sans-serif;
+  text-transform:uppercase;
+  outline: 0;
+  background:#4CAF50;
+  width:100%;
+  border:0;
+  color:#FFFFFF;
+  margin: 0 0 10px;
+  padding:15px;
+  font-size:10px;
+  cursor:pointer;
+}
+
+.form button:hover ,.form button:active{
+   background:#43A047;
+}
+.form .message{
+    color:aliceblue;
+     margin:15px 0 0;
+   font-size:12px;
+}
+
+.form .message a{
+    color:#4CAF50;
+    text-decoration:none;
+}
+/*restreint 
+.form .register-form{
+   display:none;
+}*/
