@@ -169,7 +169,7 @@ app.post('/signin', async (req, res) => {
 });
 
 
-// pour la connexion
+// for the signin
 
 app.get('/login', (req, res) => {
   if (req.session.user) {
@@ -195,7 +195,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// la deconnection
+// for the logout 
 app.get('/logout', (req, res) => {
   req.session.user = null;
   res.redirect('/login');
