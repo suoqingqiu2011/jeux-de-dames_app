@@ -115,15 +115,12 @@ wsserver.on('connection', (wsconn) => {
   });
 });
 
-
-
-// Part 4
 app.use('/', express.static('public'));
 
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
-
+// gestionnire qui gere la liste des utilisateurs 
 app.get('/userlist', async (req, res) => {
   if (req.session.user) {
     try {
@@ -136,13 +133,11 @@ app.get('/userlist', async (req, res) => {
       res.status(500).send('Error');
     }
   } else {
-    res.redirect('/');
+    res.redirect('/login');
   }
 });
 
-
-// Part 5
-
+// pour l'inscription
 app.get('/signin', (req, res) => {
   res.render('signin.html');
 });
@@ -174,7 +169,7 @@ app.post('/signin', async (req, res) => {
 });
 
 
-// Part 6
+// pour la connexion
 
 app.get('/login', (req, res) => {
   if (req.session.user) {
@@ -200,6 +195,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// la deconnection
 app.get('/logout', (req, res) => {
   req.session.user = null;
   res.redirect('/login');

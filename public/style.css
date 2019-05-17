@@ -2,6 +2,7 @@
   display: inline-block;
   width: 2em;
   height: 1em;
+  color:green;
 }
 
 table {
@@ -36,24 +37,7 @@ body {
   background-size:cover;
   background-position:center;
 }
-.login-page{
-   width:250%;
-   padding:10% 0 0;
-   margin: auto;
-   position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  color:white;
-}
-.login-page h1{
-  float : left;
-  font-size: 40px ;
-  padding:10% 0 0;
-  border-bottom: 6px solid;
-  margin-bottom: 50px;
 
-}
 .form{
   position: relative;
   z-index:1;
@@ -74,21 +58,6 @@ body {
   padding:15px;
   font-size:14px;
   }
-
-
-.form  button{
-  font-family:"Roboto" ,sans-serif;
-  text-transform:uppercase;
-  outline: 0;
-  background:#4CAF50;
-  width:100%;
-  border:0;
-  color:#FFFFFF;
-  margin: 0 0 10px;
-  padding:15px;
-  font-size:10px;
-  cursor:pointer;
-}
 
 .form button:hover ,.form button:active{
    background:#43A047;
