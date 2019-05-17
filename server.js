@@ -202,7 +202,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/logout', (req, res) => {
   req.session.user = null;
-  res.redirect('/');
+  res.redirect('/login');
 });
 // Watch out for this: app.listen would break ws!
 server.listen(process.env.PORT);
