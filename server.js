@@ -119,6 +119,7 @@ wsserver.on('connection', (wsconn) => {
 
 // Part 4
 app.use('/', express.static('public'));
+
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
@@ -164,7 +165,7 @@ app.post('/signin', async (req, res) => {
     }
   } catch (err) {
     if (err.code == 'SQLITE_CONSTRAINT') {
-      res.render('signin.html', { data: data, message: 'Utilisateur connecté' });
+      res.render('signin.html', { data: data, message: 'vous etes inscrit' });
     } else {
       console.error(err);
       res.status(500).send('Error');
@@ -183,7 +184,7 @@ app.get('/login', (req, res) => {
   }
 });
 
-app.post('/', async (req, res) => {
+app.post('/login', async (req, res) => {
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.password,
