@@ -11,11 +11,13 @@
     
     {% block menu %}
     <menu>
+      <div id="lien_out_signin">
       {% if current %}
       <a href="/logout">Logout</a>
       {% else %}
       <a href="/signin">Signin</a>
       {% endif %}
+      </div>
     </menu>
     {% endblock %}
   </body>

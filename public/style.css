@@ -1,3 +1,8 @@
+body{
+  
+  text-align: center;
+}
+
 .color {
   display: inline-block;
   width: 2em;
@@ -61,4 +66,16 @@ menu a {
 
 #but:active {
   box-shadow: none;
+}
+
+#lien_out_signin{
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+  text-align: center;
 }
