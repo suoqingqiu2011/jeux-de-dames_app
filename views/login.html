@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Welcome{% endblock %}
-<link rel="stylesheet" href="public/style.css">
+
 {% block main %}
-<form method="post">
+
+<form id="form1" method="post">
   <input type="text" id="log" name="login" placeholder="login" value="{{ data.login }}">
   <input type="password" id="pass" name="password" placeholder="password">
   <input type="submit" id="but" value="login">

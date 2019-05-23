@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}User accounts{% endblock %}</title>
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    {% block main %}
+    {% endblock %}
+    
     {% block menu %}
     <menu>
       {% if current %}
@@ -14,9 +17,6 @@
       <a href="/signin">Signin</a>
       {% endif %}
     </menu>
-    {% endblock %}
-    
-    {% block main %}
     {% endblock %}
   </body>
 </html>
