@@ -1,6 +1,6 @@
 
 
-const mainDiv = $('#main');
+const mainDiv = document.getElementById('main');
 const append = (node, type) => node.appendChild(document.createElement(type));
 
 // Create table from user list
