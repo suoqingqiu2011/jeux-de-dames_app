@@ -61,7 +61,7 @@ var wsserver = new ws.Server({
 });
 // Function to broadcast the list of conneted users
 wsserver.broadcastList = () => {
-  console.log('ça marche le broadcast');
+  //console.log('ça marche le broadcast');
   wsserver.clients.forEach((client) => {
     if (client.readyState === ws.OPEN) {
       client.send(JSON.stringify({
@@ -86,10 +86,11 @@ wsserver.broadcastList = () => {
   console.log("i'm here  "+connected_users[req.session.login]);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
-        console.log(parsed);
+        //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const login = parsed.username;
+        const username= parsed.username;
+        // We notify each user
         wsserver.broadcastList();
         break;
       case 'challenge':
