@@ -11,7 +11,6 @@ class User {
       state: this.state,
     }
   }
-  
   invite(opponent) {
     if (this !== opponent
         && this.state == 'AVAILABLE'

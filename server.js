@@ -80,21 +80,21 @@ wsserver.broadcastList = () => {
   console.log('Received new WS connection');
   var myuser = new User(req.session.login,wsconn);
   connected_users[req.session.login] = myuser ;
-  console.log("i'm0 "+this.login);
-  //console.log("i'm "+myuser);
+  console.log("i'm0 "+req.session.login);
+  console.log("i'm "+myuser);
   console.log("i'm here  "+connected_users[req.session.login]);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const username= parsed.myuser;
+        const username= parsed.username;
         // We notify each user
         wsserver.broadcastList();
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.];
+        const opponent = connected_users[parsed.username];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
