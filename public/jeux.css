@@ -1,3 +1,4 @@
+
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   color:white;
@@ -28,4 +29,15 @@ tr:nth-child(odd) td:nth-child(odd){
 }
 tr:nth-child(even) td:nth-child(even){
   background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
+}
+
+
+@-webkit-keyframes twinkling{ 
+  0%{
+  opacity:0.1; 
+  }
+  100%{
+  opacity:0.6; 
+
+  }
 }
