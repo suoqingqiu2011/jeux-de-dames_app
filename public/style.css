@@ -73,16 +73,22 @@ menu a {
   margin:10px auto;
 }
 #but {
+  margin-top: 32px;
+  width: 300px;
+  height: 39px;
   font-size: 16px;
+  color:white;
   border-radius: 3px;
-  background-color: lightgrey;
+  background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbut.png?1558682746568') no-repeat scroll center;
+  background-size:cover;
   border: 1px solid grey;
   box-shadow: 2px 2px teal;
   cursor: pointer;
 }
 
 #but:hover {
-  background-color: lightgreen;
+   background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbutcover.png?1558682989172') no-repeat scroll center;
+  background-size:cover;
 }
 
 #but:active {
@@ -93,7 +99,7 @@ menu{
   width: 100px;
   height: 35px;
   margin: 10px auto;
-  padding-left: 180px;
+  padding-left: 350px;
 }
 
 #lien_out_signin{
