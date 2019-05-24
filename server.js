@@ -147,7 +147,6 @@ app.post('/signin', async (req, res) => {
     login: req.body.login,
     pass: req.body.password,
     email: req.body.email,
-    color1: req.body.color1,
     color2: req.body.color2,
   };
   try {

@@ -1,6 +1,6 @@
-if (!sessionStorage.username) {
-  sessionStorage.username = prompt("Hello, choose a username");
-}
+//if (!sessionStorage.username) {
+  //sessionStorage.username = prompt("Hello, choose a username");
+//}
 
 const mainDiv = $('#main');
 const append = (node, type) => node.appendChild(document.createElement(type));
