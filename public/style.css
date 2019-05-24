@@ -3,6 +3,7 @@ body{
   text-align: center;
   background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fdamesback.jpg?1558685998442') no-repeat scroll center; 
   background-size:cover;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .color {
@@ -97,7 +98,7 @@ menu a {
 }
 #c1,#c2{
   width: 60px;
-  margin-right: 20px;
+  margin: 0 26px 0 26px;
 }
 menu{
   width: 100px;
