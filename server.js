@@ -78,9 +78,10 @@ wsserver.broadcastList = () => {
 // We define the WebSocket logic
   wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
-  var myuser = null;
-  connected_users[req.session.login] = myuser = new User(req.session.login,wsconn);
-  console.log(myuser);
+  var myuser = new User(req.session.login,wsconn);
+  connected_users[req.session.login] = myuser ;
+  console.log("i'm0 "+req.session.login);
+  console.log("i'm "+myuser);
   console.log("i'm here  "+connected_users[req.session.login]);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
