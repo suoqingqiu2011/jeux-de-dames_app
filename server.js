@@ -81,12 +81,13 @@ wsserver.broadcastList = () => {
   var myuser = null;
   connected_users[req.session.login] = myuser = new User(req.session.login,wsconn);
   console.log(myuser);
+  console.log("i'm here  "+connected_users[req.session.login]);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        //const name = parsed.username;
+        const login = parsed.username;
         wsserver.broadcastList();
         break;
       case 'challenge':
