@@ -14,25 +14,20 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   
   for (var u of users) {
     const row = append(table, 'tr');
-    append(row, 'td').textContent = u.name;
+    append(row, 'td').textContent = u.login;
     
     
     
     const button = append(append(row, 'th'), 'button');
     button.textContent = 'Challenge';
     button.className = 'challenge';
-    button.dataset.username = u.name;
-    if (u.state != 'AVAILABLE' || u.name == sessionStorage.username)
+    button.dataset.username = u.login;
+    if (u.state != 'AVAILABLE')
       button.disabled = true;
   }
   
   return table
 }
-
-
-
-
-
 
 // A status to know if we are playing or not
 let status = 'available';

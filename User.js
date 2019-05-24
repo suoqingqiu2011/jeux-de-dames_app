@@ -1,13 +1,13 @@
 class User {
-  constructor(name, wsconn) {
-    this.name = name;
+  constructor(login, wsconn) {
+    this.login = login;
     this.wsconn = wsconn;
     this.state = 'AVAILABLE';
   }
   
   serialize() {
     return {
-      name: this.name,
+      login: this.login,
       state: this.state,
     }
   }

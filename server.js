@@ -96,11 +96,11 @@ wsserver.broadcastList = () => {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
             type: 'challenge',
-            username: myuser.name,
+            username: myuser.login,
           }));
           wsconn.send(JSON.stringify({
             type: 'challenge',
-            username: opponent.name,
+            username: opponent.login,
           }));
           wsserver.broadcastList();
         } else {
@@ -147,7 +147,7 @@ app.get('/', function(request, response) {
 });
 // gestionnire qui gere la liste des utilisateurs 
 app.get('/userlist', async (req, res) => {
-  if (req.session.user) {
+ /* if (req.session.user) {
     try {
       res.render('userlist.html', { 
         users: await knex('users'),
@@ -159,7 +159,8 @@ app.get('/userlist', async (req, res) => {
     }
   } else {
     res.redirect('/login');
-  }
+  }*/
+  res.render('userlist.html');
 });
 
 // pour l'inscription
