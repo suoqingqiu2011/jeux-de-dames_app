@@ -79,7 +79,7 @@ wsserver.broadcastList = () => {
   wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
   var myuser = null;
-  connected_users[req.session.user] = myuser = new User(req.session.user,wsconn);
+  connected_users[req.session.login] = myuser = new User(req.session.login,wsconn);
   console.log(myuser);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
@@ -209,7 +209,9 @@ app.post('/login', async (req, res) => {
     pass: req.body.password,
   }).first();
   if (user) {
-    req.session.user = user;
+    req.session.login = user.login;
+    req.session.password = user.password;
+    req.session.email = user.email;
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
@@ -221,7 +223,7 @@ app.post('/login', async (req, res) => {
 
 // for the logout 
 app.get('/logout', (req, res) => {
-  req.session.user = null;
+  req.session.login = null;
   res.redirect('/login');
 });
 // Watch out for this: app.listen would break ws!
