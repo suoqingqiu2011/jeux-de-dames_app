@@ -5,18 +5,18 @@ body {
   font-weight: bold;
   margin: 2em;
   text-align: center;
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback5.jpg?1557058741046') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback5.jpg?1558689149906') repeat scroll center; 
 
 }
 
 
 #vide{
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558689148719') repeat scroll center; 
 }
 
 table{
   border-collapse:collapse;
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback7.jpg?1557059482203') repeat-x scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback7.jpg?1558689223405') repeat-x scroll center; 
  /* background-image: linear-gradient(45deg,black 25%,DimGray 0,DimGray 50%,black 0,black 75%,DimGray 0);
   background-size: 40px 40px;*/
   
@@ -25,10 +25,10 @@ table{
 
 
 tr:nth-child(odd) td:nth-child(odd){
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558689148719') repeat scroll center; 
 }
 tr:nth-child(even) td:nth-child(even){
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558689148719') repeat scroll center; 
 }
 
 
