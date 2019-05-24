@@ -61,6 +61,7 @@ var wsserver = new ws.Server({
 });
 // Function to broadcast the list of conneted users
 wsserver.broadcastList = () => {
+  console.log('dans brodcost');
   wsserver.clients.forEach((client) => {
     if (client.readyState === ws.OPEN) {
       client.send(JSON.stringify({
@@ -70,7 +71,7 @@ wsserver.broadcastList = () => {
           userlist: Object.values(connected_users).map((u) => u.serialize()),
         }));
     }
-    console.log('dans brodcost');
+    
   });
 };
 
@@ -79,13 +80,13 @@ wsserver.broadcastList = () => {
   console.log('Received new WS connection');
   var myuser = null;
   connected_users[req.session.user] = myuser = new User(req.session.user,wsconn);
-  //console.log(myuser);
+  console.log(myuser);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const name = parsed.username;
+        //const name = parsed.username;
         wsserver.broadcastList();
         break;
       case 'challenge':

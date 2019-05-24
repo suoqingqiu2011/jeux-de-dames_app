@@ -43,8 +43,9 @@ const send = (ws, data) => ws.send(JSON.stringify(data));
 const ws = new WebSocket('wss://' + window.location.host)
 
 ws.addEventListener('open', function(e) {
-  //send(ws, "kone");
-  send(ws, "new_connection");
+   send(ws, { 
+    type: 'new_connection', 
+  });
 
   ws.addEventListener('message', function(e) {
     const parsed = JSON.parse(e.data);
@@ -74,7 +75,7 @@ ws.addEventListener('open', function(e) {
         console.error(parsed.message);
         break;
       default:
-        console.error('Bad', parsed);
+        console.error('Badxxxxxxxxxx', parsed);
     }
   });
   
@@ -84,7 +85,7 @@ ws.addEventListener('open', function(e) {
     if (e.target.className == 'challenge') {
       send(ws, {
         type: 'challenge',
-        username: e.target.dataset.username,
+        //username: e.target.dataset.username,
       });
     } else if (e.target.className == 'quit') {
       send(ws, { type: 'quit' });
