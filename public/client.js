@@ -2,11 +2,11 @@ if (!sessionStorage.username) {
   sessionStorage.username = prompt("Hello, choose a username");
 }
 
-const mainDiv = $('#mainn');
+const mainDiv = $('#main');
 const append = (node, type) => node.appendChild(document.createElement(type));
 
 // Create table from user list
-const createUserList = (users) => {
+  const createUserList = (users) => {
   const table = document.createElement('table');
 
   const row = append(table, 'tr');
@@ -54,7 +54,7 @@ ws.addEventListener('open', function(e) {
       case 'userlist':
         if (status == 'available') {
           mainDiv.innerHTML = '';
-          //mainDiv.appendChild(createUserList(parsed.userlist));
+          mainDiv.appendChild(createUserList(parsed.userlist));
         }
         break;
       case 'challenge':
