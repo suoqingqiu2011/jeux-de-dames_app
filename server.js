@@ -59,21 +59,6 @@ var wsserver = new ws.Server({
         });
     },
 });
-// Function to broadcast the list of conneted users
-wsserver.broadcastList = () => {
-  //console.log('ça marche le broadcast');
-  wsserver.clients.forEach((client) => {
-    if (client.readyState === ws.OPEN) {
-      client.send(JSON.stringify({
-          type: 'userlist',
-          // We must avoid calling JSON.stringify on the wsconn field
-          // of each user
-          userlist: Object.values(connected_users).map((u) => u.serialize()),
-        }));
-    }
-    
-  });
-};
 
 // We define the WebSocket logic
   wsserver.on('connection', (wsconn,req) => {
@@ -134,6 +119,22 @@ wsserver.broadcastList = () => {
     }  
   });
   
+    // Function to broadcast the list of conneted users
+wsserver.broadcastList = () => {
+  //console.log('ça marche le broadcast');
+  wsserver.clients.forEach((client) => {
+    if (client.readyState === ws.OPEN) {
+      client.send(JSON.stringify({
+          type: 'userlist',
+          // We must avoid calling JSON.stringify on the wsconn field
+          // of each user
+          userlist: Object.values(connected_users).map((u) => u.serialize()),
+        }));
+    }
+    
+  });
+};
+
   wsconn.on('close', () => {
     if (myuser !== null) {
       delete connected_users[myuser.login];

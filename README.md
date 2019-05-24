@@ -7,14 +7,19 @@ Nous avons donc supposé des valuations comme le pion blanc normal noté par **1
 S'ils sont choisi, des pions normaux sont notés par **3** . Quand des joueurs ont vu des pions dames, les pions dames noirs sont noté par **5** et les blancs sont en **4** (`noté = 6-turn`).
 Si des pions dames sont choisis, ils sont changé par **6**.  
   
+**Fonctions de jeux dames**
+
 - `render()`: créer un damier du jeux et contenir toutes les structures de performances
 - `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
-- `play(row,column)`: activiter des events de `addEventListener` et réaliser toutes les actions des pions comme les déplacements et les manges.
-- `deplacement(row,column,player)`: faire l'action de déplacement
-- `enlever_deplacement(row,column,player)`: après la déplacement 
-- `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
-- `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
-
+- `play(row,column)`: activiter des events de `addEventListener` et réaliser toutes les actions des pions comme déplacer et manger.
+- `deplacement(row,column,player)`: le pion normal fait l'action de déplacement
+- `enlever_deplacement(row,column,player)`: après bouger le pions, enlever ce pion dans la ancienne position  
+- `mangerPion(row,column,player,alerttxt)`: le pion normal fait l'action de manger
+- `enleverPion(row,column,player)`: après manger le pions d'adversaire, enlever ce pion dans la ancienne position  
+- `mangerPionSuper(row,column,superRow,superCol,player,alerttxt)`: le pion dames fait l'action de manger
+- `reset()`: recommencer à jouer et réinitialiser toutes les valuations
+- `removeEle()`: enlever des structures répetés
+- `win(player)`: vérifier s'il y a encore des pions. s'il ne reste plus, l'adversaire va gagner.
 
 # User accounts
 
