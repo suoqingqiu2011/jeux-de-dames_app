@@ -61,7 +61,7 @@ var wsserver = new ws.Server({
 });
 // Function to broadcast the list of conneted users
 wsserver.broadcastList = () => {
-  console.log('dans brodcost');
+  console.log('ça marche le broadcast');
   wsserver.clients.forEach((client) => {
     if (client.readyState === ws.OPEN) {
       client.send(JSON.stringify({
@@ -133,7 +133,7 @@ wsserver.broadcastList = () => {
   
   wsconn.on('close', () => {
     if (myuser !== null) {
-      delete connected_users[myuser.name];
+      delete connected_users[myuser.login];
       wsserver.broadcastList();
     }
   });
