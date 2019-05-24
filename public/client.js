@@ -85,7 +85,7 @@ ws.addEventListener('open', function(e) {
     if (e.target.className == 'challenge') {
       send(ws, {
         type: 'challenge',
-        //username: e.target.dataset.username,
+        username: e.target.dataset.username,
       });
     } else if (e.target.className == 'quit') {
       send(ws, { type: 'quit' });
