@@ -13,7 +13,7 @@ async function init() {
     table.string('login').primary();
     table.string('password').notNullable();
     table.string('email').notNullable();
-    table.string('color2', 15);
+    //table.string('color2', 15);
   });
   
   var cols = await knex('users').columnInfo();
