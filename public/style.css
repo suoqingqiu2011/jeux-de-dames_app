@@ -41,7 +41,7 @@ menu a {
   border-radius: 3px;
 }
 
-#log , #pass,mail{
+#log , #pass, #mail{
   display: block;
   margin-bottom: 10px;
   padding: 5px;
