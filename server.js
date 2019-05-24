@@ -77,7 +77,7 @@ wsserver.broadcastList = () => {
   wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
   var myuser = null;
-  connected_users[req.session.name] = myuser = new User(req.session.name,wsconn);
+  connected_users[req.session.user] = myuser = new User(req.session.user,wsconn);
   //console.log(myuser);
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
