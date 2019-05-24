@@ -1,9 +1,10 @@
+
 var express = require('express');
 require('express-async-errors');
 var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
-const User = require('./User.js');
+const User = require('./User');
 
 
 app.use(bodyP.urlencoded({ extended: false }));
@@ -74,11 +75,11 @@ wsserver.broadcastList = () => {
 };
 
 // We define the WebSocket logic
-wsserver.on('connection', (wsconn) => {
+wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
   let myuser = null;
-  
-  connected_users[wsconn.upgradeReq.session.session.name] = myuser = new User( wsconn.upgradeReq.session.session.name, wsconn);
+  myuser = new User( req.session.user, wsconn);
+  connected_users[req.session.user] = myuser;
   //console.log(myuser);
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
