@@ -4,7 +4,7 @@ require('express-async-errors');
 var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
-const User = require('./User');
+const User = require('./User.js');
 
 
 app.use(bodyP.urlencoded({ extended: false }));
@@ -76,8 +76,8 @@ wsserver.broadcastList = () => {
 // We define the WebSocket logic
 wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
-  let myuser = null;
-  connected_users[req.session.name] = myuser= myuser = new User( req.session.name, wsconn);
+  var myuser = null;
+  connected_users[req.session.name] = myuser = new User(req.session.name,wsconn);
   //console.log(myuser);
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
