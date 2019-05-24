@@ -8,7 +8,13 @@ S'ils sont choisi, des pions normaux sont notés par **3** . Quand des joueurs o
 Si des pions dames sont choisis, ils sont changé par **6**.  
   
 - `render()`: créer un damier du jeux et contenir toutes les structures de performances
-- `render()`: créer un damier du jeux et contenir toutes les structures de performances
+- `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
+- `play(row,column)`: activiter des events de `addEventListener` et réaliser toutes les actions des pions comme les déplacements et les manges.
+- `deplacement(row,column,player)`: faire l'action de déplacement
+- `enlever_deplacement(row,column,player)`: après la déplacement 
+- `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
+- `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
+
 
 # User accounts
 
