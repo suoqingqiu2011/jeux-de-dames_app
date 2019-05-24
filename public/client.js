@@ -43,10 +43,7 @@ const send = (ws, data) => ws.send(JSON.stringify(data));
 const ws = new WebSocket('wss://' + window.location.host)
 
 ws.addEventListener('open', function(e) {
-  send(ws, { 
-    type: 'new_connection', 
-    username: sessionStorage.username,
-  });
+  send(ws, "kone");
 
   ws.addEventListener('message', function(e) {
     const parsed = JSON.parse(e.data);

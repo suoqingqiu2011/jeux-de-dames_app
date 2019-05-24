@@ -4,27 +4,7 @@ var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
 const User = require('./User');
-var sess_storage = session({ 
-    secret: "12345",
-    resave: false,
-    saveUninitialized: false,
-});
-app.use(sess_storage);
 
-var wsserver = new ws.Server({ 
-    server: server,
-
-    verifyClient: function(info, next) {
-        sess_storage(info.req, {}, function(err) {
-            if (err) {
-                next(false, 500, "Error: " + err);
-            } else {
-                // Pass false if you want to refuse the connection
-                next(true);
-            }
-        });
-    },
-});
 
 app.use(bodyP.urlencoded({ extended: false }));
 app.use(session({
@@ -55,10 +35,30 @@ const connected_users = {};
 
 // We attach express and ws to the same HTTP server
 const server = http.createServer(app);
-const wsserver = new ws.Server({ 
+/*const wsserver = new ws.Server({ 
   server: server,
+});*/
+var sess_storage = session({ 
+    secret: "12345",
+    resave: false,
+    saveUninitialized: false,
 });
+app.use(sess_storage);
 
+var wsserver = new ws.Server({ 
+    server: server,
+
+    verifyClient: function(info, next) {
+        sess_storage(info.req, {}, function(err) {
+            if (err) {
+                next(false, 500, "Error: " + err);
+            } else {
+                // Pass false if you want to refuse the connection
+                next(true);
+            }
+        });
+    },
+});
 // Function to broadcast the list of conneted users
 wsserver.broadcastList = () => {
   wsserver.clients.forEach((client) => {
@@ -78,7 +78,8 @@ wsserver.on('connection', (wsconn) => {
   console.log('Received new WS connection');
   let myuser = null;
   
-  connected_users[name] = myuser = new User(name, wsconn);
+  connected_users[name] = myuser = new User( wsconn.upgradeReq.session.name, wsconn);
+  console.log(myuser);
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
     console.log(parsed);
