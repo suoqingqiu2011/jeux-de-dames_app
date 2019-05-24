@@ -7,9 +7,10 @@ Nous avons donc supposé des valuations comme le pion blanc normal noté par **1
 S'ils sont choisi, des pions normaux sont notés par **3** . Quand des joueurs ont vu des pions dames, les pions dames noirs sont noté par **5** et les blancs sont en **4** (`noté = 6-turn`).
 Si des pions dames sont choisis, ils sont changé par **6**.  
   
-**Fonctions de jeux dames**
+**Rappel de fonctions de jeux dames**
 
-- `render()`: créer un damier du jeux et contenir toutes les structures de performances
+- `set(row,column,player)`: juste pour tester s'il donne un bon note sur `tableau[row][column]`
+- `render()`: créer un damier du jeux et contenir toutes les structures de performances , mais il ne fait que l'affichage statique. Si on veut voir des actions, ils sont être implémentés dans `play(row,column)`
 - `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
 - `play(row,column)`: activiter des events de `addEventListener` et réaliser toutes les actions des pions comme déplacer et manger.
 - `deplacement(row,column,player)`: le pion normal fait l'action de déplacement
@@ -20,6 +21,9 @@ Si des pions dames sont choisis, ils sont changé par **6**.
 - `reset()`: recommencer à jouer et réinitialiser toutes les valuations
 - `removeEle()`: enlever des structures répetés
 - `win(player)`: vérifier s'il y a encore des pions. s'il ne reste plus, l'adversaire va gagner.
+
+**Attention**
+Pour vérifier l'état sur le row et le column,
 
 # User accounts
 
