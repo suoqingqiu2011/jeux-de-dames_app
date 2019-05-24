@@ -5,18 +5,18 @@ body {
   font-weight: bold;
   margin: 2em;
   text-align: center;
-  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback5.jpg?1558690302219') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback5.jpg?1557058741046') repeat scroll center; 
   background-size:contain;
 }
 
 
 #vide{
-  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558690302151') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
 }
 
 table{
   border-collapse:collapse;
-  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback7.jpg?1558690304338') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback7.jpg?1557059482203') repeat scroll center; 
  /* background-image: linear-gradient(45deg,black 25%,DimGray 0,DimGray 50%,black 0,black 75%,DimGray 0);
   background-size: 40px 40px;*/
   
@@ -25,10 +25,10 @@ table{
 
 
 tr:nth-child(odd) td:nth-child(odd){
-  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558690302151') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
 }
 tr:nth-child(even) td:nth-child(even){
-  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558690302151') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
 }
 
 
@@ -40,4 +40,47 @@ tr:nth-child(even) td:nth-child(even){
   opacity:0.6; 
 
   }
+}
+
+#resultat{
+  position: absolute;
+  width: 200px;
+  height: 160px;
+  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
+  margin: 10px auto;
+  right: 160px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+ul{
+  width:190px;
+  height:80px;
+  text-align:center;
+  padding-inline-start: 0px;
+  margin: 10px auto;
+  border: 1px solid brown;
+}
+
+li{
+  width:180px;
+  height:36px;
+  text-align:center;
+  list-style: none;
+  margin: 2px auto;
+}
+
+img{
+  width:33px;
+  height:33px;
+  vertical-align: middle;
+  margin: 0 5px 0 5px;
+}
+
+#userpion{  
+  font-weight:bold; 
+  color:white; 
+  height:33px;
+  width :33px;
+  vertical-align: middle;
 }

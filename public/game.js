@@ -22,12 +22,56 @@ var score_white = 0;
 
 function render(){
   
+  var divt = document.querySelector('#resultat');
+  var usertext = document.createElement('ul');
+  usertext.id='usertext';
+  for(var i = 0; i < 2 ;i++){
+    var lii = document.createElement('li');
+    lii.innerHTML=" player "+(i+1);
+    var img = document.createElement('img');
+    img.width="33px";
+    img.height="33px";
+    if(i==0){
+      img.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235";
+    }else if(i==1){
+      img.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765";
+    }
+    lii.appendChild(img);
+    if(i==0){
+       lii.innerHTML+="Score : " +score_black;
+    }else if(i==1){
+       lii.innerHTML+="Score : " +score_white;      
+    }
+    usertext.appendChild(lii);
+    
+  }
+  
+  var tour = document.createElement('div');
+  tour.id ='tour'; 
+  var userpion = document.createElement('img');
+  userpion.id='userpion';
+  tour.innerHTML=" Turn : ";
+  
+  if(turn==1){
+    userpion.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235";  
+  }else if(turn==2){
+    userpion.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765";  
+  }
+  
+  tour.appendChild(userpion);
+  divt.appendChild(usertext);
+  divt.appendChild(tour);
+  
+  
+  
+  
   var divv = document.querySelector('#vide');
   divv.style.height = '630px';
   divv.style.width ='565px';
   divv.style.border = '3px solid Maroon ';
   divv.style.margin="0 auto";
   
+
   var tab = document.createElement('table');
   tab.id = "plateau";
   tab.style.height = '555px';
@@ -715,8 +759,7 @@ function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
 
                    console.log("final turn2: "+turn);
                     break;
-                }           
-               
+                }                    
            }
            
         return;
@@ -742,7 +785,7 @@ function enleverPion(row,column,player){
       tableau[row-1][column-1]=0;  
       tableau[row-2][column-2]=0; 
     }
-  
+    //noter les pions restés après le pions normaux ont mangés
     if(turn==1){
       nb_white=nb_white-1;
     }else if(turn==2){
@@ -783,6 +826,14 @@ function removeEle(){
   var removeTab = document.getElementById('plateau');
   var parentEl = removeTab.parentElement;
   parentEl.removeChild(removeTab);
+  
+  var removeTour = document.getElementById('tour');
+  var parentE00 = removeTour.parentElement;
+  parentE00.removeChild(removeTour);
+  
+  var removeText = document.getElementById('usertext');
+  var parentEl0 = removeText.parentElement;
+  parentEl0.removeChild(removeText);
 
   var removeBut = document.getElementById('bt');
   var parentEl1 = removeBut.parentElement;
@@ -812,3 +863,4 @@ function win(player) {  console.log("turn: "+turn+" want to win here. Score blac
 
 //afficher notre damier
 this.render();
+
