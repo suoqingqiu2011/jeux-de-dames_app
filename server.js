@@ -83,6 +83,7 @@ wsserver.broadcastList = () => {
   console.log("i'm0 "+req.session.login);
   console.log("i'm "+myuser);
   console.log("i'm here  "+connected_users[req.session.login]);
+    
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         console.log(parsed);
