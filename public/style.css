@@ -135,3 +135,10 @@ menu a {
 #lien_out_signin:active {
   box-shadow: none;
 }
+
+#tab2{
+  margin: 50px auto; 
+  border: 2px solid white;  
+  width: 666px;
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback1.jpg?1558696712670') repeat scroll center; 
+}
