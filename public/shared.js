@@ -1,7 +1,3 @@
-/******************
- *Some functions used by both the AJAX and WS implementations 
- ******************/
-
 // Utility DOM functions
 const $ = document.querySelector.bind(document);
 const append = (node, type) => node.appendChild(document.createElement(type));

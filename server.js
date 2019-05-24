@@ -186,6 +186,11 @@ app.post('/login', async (req, res) => {
   }).first();
   if (user) {
     req.session.user = user;
+    
+    if (!sessionStorage.username) {
+      sessionStorage.username = user.login;
+    }
+    
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 

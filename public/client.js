@@ -1,6 +1,4 @@
-if (!sessionStorage.username) {
-  sessionStorage.username = prompt("Hello, choose a username");
-}
+
 
 const mainDiv = $('#main');
 const append = (node, type) => node.appendChild(document.createElement(type));
@@ -17,6 +15,9 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   for (var u of users) {
     const row = append(table, 'tr');
     append(row, 'td').textContent = u.name;
+    
+    
+    
     const button = append(append(row, 'th'), 'button');
     button.textContent = 'Challenge';
     button.className = 'challenge';
