@@ -45,7 +45,6 @@ var sess_storage = session({
     saveUninitialized: false,
 });
 app.use(sess_storage);
-
 var wsserver = new ws.Server({ 
     server: server,
 
@@ -78,8 +77,7 @@ wsserver.broadcastList = () => {
 wsserver.on('connection', (wsconn,req) => {
   console.log('Received new WS connection');
   let myuser = null;
-  myuser = new User( req.session.user, wsconn);
-  connected_users[req.session.user] = myuser;
+  connected_users[req.session.name] = myuser= myuser = new User( req.session.name, wsconn);
   //console.log(myuser);
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
