@@ -43,7 +43,8 @@ const send = (ws, data) => ws.send(JSON.stringify(data));
 const ws = new WebSocket('wss://' + window.location.host)
 
 ws.addEventListener('open', function(e) {
-  send(ws, "kone");
+  //send(ws, "kone");
+  send(ws, "new_connection");
 
   ws.addEventListener('message', function(e) {
     const parsed = JSON.parse(e.data);
@@ -73,7 +74,7 @@ ws.addEventListener('open', function(e) {
         console.error(parsed.message);
         break;
       default:
-        console.error('Bad message', parsed);
+        console.error('Bad', parsed);
     }
   });
   

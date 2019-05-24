@@ -70,6 +70,7 @@ wsserver.broadcastList = () => {
           userlist: Object.values(connected_users).map((u) => u.serialize()),
         }));
     }
+    console.log('dans brodcost');
   });
 };
 
