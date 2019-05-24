@@ -3,7 +3,28 @@ require('express-async-errors');
 var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
+const User = require('./User');
+var sess_storage = session({ 
+    secret: "12345",
+    resave: false,
+    saveUninitialized: false,
+});
+app.use(sess_storage);
 
+var wsserver = new ws.Server({ 
+    server: server,
+
+    verifyClient: function(info, next) {
+        sess_storage(info.req, {}, function(err) {
+            if (err) {
+                next(false, 500, "Error: " + err);
+            } else {
+                // Pass false if you want to refuse the connection
+                next(true);
+            }
+        });
+    },
+});
 
 app.use(bodyP.urlencoded({ extended: false }));
 app.use(session({
@@ -57,6 +78,7 @@ wsserver.on('connection', (wsconn) => {
   console.log('Received new WS connection');
   let myuser = null;
   
+  connected_users[name] = myuser = new User(name, wsconn);
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
     console.log(parsed);
@@ -186,11 +208,6 @@ app.post('/login', async (req, res) => {
   }).first();
   if (user) {
     req.session.user = user;
-    
-    if (!sessionStorage.username) {
-      sessionStorage.username = user.login;
-    }
-    
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
