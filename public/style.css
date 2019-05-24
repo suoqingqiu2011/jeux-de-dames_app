@@ -2,6 +2,7 @@ body{
   
   text-align: center;
   background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Floginback1.jpg?1558658986614') no-repeat scroll center; 
+  background-size:cover;
 }
 
 .color {
@@ -87,7 +88,7 @@ menu a {
 }
 
 #but:hover {
-   background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbutcover.png?1558682989172') no-repeat scroll center;
+  background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbutcover.png?1558682989172') no-repeat scroll center;
   background-size:cover;
 }
 
@@ -99,6 +100,7 @@ menu{
   width: 100px;
   height: 35px;
   margin: 10px auto;
+  margin-top:80px;
   padding-left: 350px;
 }
 
