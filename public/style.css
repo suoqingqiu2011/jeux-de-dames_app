@@ -1,7 +1,7 @@
 body{
   
   text-align: center;
-  background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback5.jpg?1557058741046') repeat scroll center; 
+  background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Floginback1.jpg?1558658986614') no-repeat scroll center; 
 }
 
 .color {
@@ -32,14 +32,27 @@ menu a {
   padding: 0.5ex 1ex;
 }
 
-#form1 ,#form2{
-  margin-bottom: 25px;
-  padding: 15px;
+#form1 {
+  margin: 25px;
+  
   background-color: cyan;
   display: inline-block;
-  width: 200px;
-  height: 180px;
-  border-radius: 3px;
+  width: 560px;
+  height: 390px;
+  
+  background:  url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Flogin0.png?1558659053655') no-repeat scroll center;
+  background-size:contain;
+}
+#form2{
+  margin: 25px;
+  
+  background-color: cyan;
+  display: inline-block;
+  width: 560px;
+  height: 390px;
+  
+  background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fsignin.png?1558659040882') no-repeat scroll center;
+  background-size:contain;
 }
 
 #log , #pass, #mail{
