@@ -213,7 +213,7 @@ app.post('/login', async (req, res) => {
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.pass,
-    email:req
+    email:req.body.email,
   }).first();
   if (user) {
     req.session.login = user.login;
