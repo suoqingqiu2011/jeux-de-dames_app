@@ -377,7 +377,7 @@ function play(row,column){
     if((row+column)%2==1){
       alerttxt.innerHTML="";
       if(tableau[row][column] != 0){  
-        //permettre a  des pions
+        //permettre a changer des pions pour un utilisateur
          if(tableau[row][column] != 3 && tableau[row][column] != 6 && (tableau[row][column] == turn||tableau[row][column] == 6-turn)){ 
          
            console.log("nb_step:"+nb_step);
@@ -428,10 +428,10 @@ function play(row,column){
            alert("It's the turn for your enemy '"+color+"' !");
          }
              
-        // console.log('choosen : tableau['+row+']['+column+']='+tableau[row][column]);
-         
+        
+         //si la place est vide, on considere c'est dans quels cas(on deplace ou mange).
       }else if(tableau[row][column]==0){
-          
+          //des fonctionalites pour le pion noir normal
           if(tmp_row_col==1){ 
              if(((tmp_row==row-2)&&(tmp_col==column+2)&&(tableau[row-1][column+1]==3-turn||tableau[row-1][column+1]==3+turn))||((tmp_row==row-2)&&(tmp_col==column-2)&&(tableau[row-1][column-1]==3-turn||tableau[row-1][column-1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column+2)&&(tableau[row+1][column+1]==3-turn||tableau[row+1][column+1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column-2)&&(tableau[row+1][column-1]==3-turn||tableau[row+1][column-1]==3+turn)) )
                {  console.log("mange1");
@@ -445,7 +445,7 @@ function play(row,column){
                  alert("Can't move the chess piece here.");
                }           
            }
-  
+          //des fonctionalites pour le pion blanc normal
            if(tmp_row_col==2){
              if(((tmp_row==row-2)&&(tmp_col==column+2)&&(tableau[row-1][column+1]==3-turn||tableau[row-1][column+1]==3+turn))||((tmp_row==row-2)&&(tmp_col==column-2)&&(tableau[row-1][column-1]==3-turn||tableau[row-1][column-1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column+2)&&(tableau[row+1][column+1]==3-turn||tableau[row+1][column+1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column-2)&&(tableau[row+1][column-1]==3-turn||tableau[row+1][column-1]==3+turn)) )
              {  console.log("mange2");
@@ -459,7 +459,7 @@ function play(row,column){
                alert("Can't move the chess piece here.");
              }   
           }
-          
+          //des fonctionalites pour le pion noir ou blanc dames
           if((tmp_row_col==4||tmp_row_col==5)&&tableau[tmp_row][tmp_col]==6){   
             
             if(((row-column)==(tmp_row-tmp_col)||(row+column)==(tmp_row+tmp_col))){
@@ -467,7 +467,7 @@ function play(row,column){
                  var proche_row=0;
                  var proche_col=0;  
                  for(var p = 0; p <= 9;p++){  
-                 
+                 //sur le diagonal arriere droit
                    if(((tmp_row+p<=9&&tmp_col+p<=9)?((tableau[tmp_row+p][tmp_col+p]!=0&&tableau[tmp_row+p][tmp_col+p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col+p==9&&column<=9)):0)&&tmp_row<=row&&tmp_col<=column){ console.log('tmp_row+p '+(tmp_row+p)+' tmp_col+p '+(tmp_col+p));
                      
                         proche_row=tmp_row+p;
@@ -499,6 +499,7 @@ function play(row,column){
                         break;
                      
                   }
+                   //sur le diagonal arriere gauche
                    if(((tmp_row+p<=9&&tmp_col-p>=0)?((tableau[tmp_row+p][tmp_col-p]!=0&&tableau[tmp_row+p][tmp_col-p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col-p==0&&column>=0)):0)&&tmp_row<=row&&tmp_col>=column){ console.log('tmp_row+p '+(tmp_row+p)+' tmp_col-p '+(tmp_col-p));
                      
                         proche_row=tmp_row+p;
@@ -526,9 +527,9 @@ function play(row,column){
                           break;
                        }     
                        break;
-                   // }
+                  
                   }
-                           
+                   //sur le diagonal devant droit        
                    if(((tmp_row-p>=0&&tmp_col+p<=9)?((tableau[tmp_row-p][tmp_col+p]!=0&&tableau[tmp_row-p][tmp_col+p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col+p==9&&column<=9)):0)&&tmp_row>=row&&tmp_col<=column){ console.log('tmp_row-p '+(tmp_row-p)+' tmp_col+p '+(tmp_col+p));
                       
                         proche_row=tmp_row-p;
@@ -559,7 +560,7 @@ function play(row,column){
                       
                   }                           
                                                 
-                   
+                   //sur le diagonal devant gauche 
                    if(((tmp_row-p>=0&&tmp_col-p>=0)?((tableau[tmp_row-p][tmp_col-p]!=0&&tableau[tmp_row-p][tmp_col-p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col-p==0&&column>=0)):0)&&tmp_row>=row&&tmp_col>=column){ console.log('tmp_row-p '+(tmp_row-p)+' tmp_col-p '+(tmp_col-p));
                      
                         proche_row=tmp_row-p;

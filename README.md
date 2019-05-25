@@ -40,9 +40,9 @@ Si des pions dames sont choisis, ils sont changé par **6**.
 
 **Attention**  
 ------------
-Pour vérifier l'état sur le `row` et le `column`, si on va aussi voir des états de ses voisins, `row+(-)i` et `column+(-)i` doivent bien respecter le limite de nombre des lignes et colonnes (`<=9`).
+- Pour vérifier l'état sur le `row` et le `column`, si on va aussi voir des états de ses voisins, `row+(-)i` et `column+(-)i` doivent bien respecter le limite de nombre des lignes et colonnes (`<=9`).
 
-
+- Avant excuter notre projet, il faut taper des commandes `node db_init.js` et `sqlite3 .data/db.sqlite3 .schema` pour initialier la base de données.
 
 # User accounts
 
