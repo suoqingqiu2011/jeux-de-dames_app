@@ -177,11 +177,12 @@ app.post('/signin', async (req, res) => {
     login: req.body.login,
     pass: req.body.password,
     email: req.body.email,
-    color2: req.body.color2,
+    //color2: req.body.color2,
   };
   try {
     if (data.login 
         && data.pass
+        && data.email
         && await knex('users').insert(data)) {
       res.redirect('/login');
     } else {
@@ -212,10 +213,11 @@ app.post('/login', async (req, res) => {
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.password,
+    email: req.body.email,
   }).first();
   if (user) {
     req.session.login = user.login;
-    req.session.password = user.pass;
+    req.session.password = user.password;
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
