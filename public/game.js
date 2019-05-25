@@ -32,9 +32,9 @@ function render(){
     img.width="33px";
     img.height="33px";
     if(i==0){
-      img.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235";
+      img.src="https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_noir.png?1558689060582";
     }else if(i==1){
-      img.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765";
+      img.src="https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_blanc.png?1558689066452";
     }
     lii.appendChild(img);
     if(i==0){
@@ -53,9 +53,9 @@ function render(){
   tour.innerHTML=" Turn : ";
   
   if(turn==1){
-    userpion.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235";  
+    userpion.src="https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_noir.png?1558689060582";  
   }else if(turn==2){
-    userpion.src="https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765";  
+    userpion.src="https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_blanc.png?1558689066452";  
   }
   
   tour.appendChild(userpion);
@@ -91,12 +91,12 @@ function render(){
             if (tableau[i][j]!=3&&tableau[i][j]!=6){ 
               if(nb_step==0){
                 if(i>=6){
-                    tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235') repeat scroll center; -webkit-background-size: cover;";
+                    tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_noir.png?1558689060582') repeat scroll center; -webkit-background-size: cover;";
                     tdd.style.borderRadius = "39px";  
                     tableau[i][j]=1;
                 }
                 if(i<=3){
-                    tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765') repeat scroll center; -webkit-background-size: cover; ";
+                    tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_blanc.png?1558689066452') repeat scroll center; -webkit-background-size: cover; ";
                     tdd.style.borderRadius = "39px"; 
                     tableau[i][j]=2;
                 }
@@ -117,22 +117,22 @@ function render(){
             //console.log("here");
             if(tableau[i][j]==1){
               tdd.className ="player1";
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_noir.png?1557155856235') repeat  scroll center;  -webkit-background-size: cover; ";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_noir.png?1558689060582') repeat  scroll center;  -webkit-background-size: cover; ";
               tdd.style.borderRadius = "39px";
 
             }else if (tableau[i][j]==2){
               tdd.className ="player2";
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_blanc.png?1557155858765') repeat  scroll center;  -webkit-background-size: cover; ";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_blanc.png?1558689066452') repeat  scroll center;  -webkit-background-size: cover; ";
               tdd.style.borderRadius = "39px";
 
             }else if(tableau[i][j]==4){ 
             
-            tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fsuper_pion_blanc.png?1557531095454') repeat scroll center; -webkit-background-size: cover;";
+            tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fsuper_pion_blanc.png?1558689066906') repeat scroll center; -webkit-background-size: cover;";
             tdd.style.borderRadius = "39px";
        
             }else if(tableau[i][j]==5){
             
-            tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fsuper_pion_noir.png?1557531091227') repeat scroll center; -webkit-background-size: cover;";    
+            tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fsuper_pion_noir.png?1558689066877') repeat scroll center; -webkit-background-size: cover;";    
             tdd.style.borderRadius = "39px";
      
             } 
@@ -265,9 +265,9 @@ function render(){
             tdd.className ="choosen";   
             
             if(turn==1){
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_darkred.png?1557155864578') repeat scroll center; -webkit-background-size: cover;";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_darkred.png?1558689066451') repeat scroll center; -webkit-background-size: cover;";
             }else if(turn==2){
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_gold.png?1557156089606') repeat scroll center; -webkit-background-size: cover;";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fpion_gold.png?1558689066971') repeat scroll center; -webkit-background-size: cover;";
             }
               
             tdd.style.borderRadius = "35px";
@@ -278,9 +278,9 @@ function render(){
             tdd.className ="choosen_super";   
             
             if(turn==1){
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fsuper_pion_darkred.png?1557531093334') repeat scroll center; -webkit-background-size: cover;";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fsuper_pion_darkred.png?1558689066517') repeat scroll center; -webkit-background-size: cover;";
             }else if(turn==2){
-              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fsuper_pion_gold.png?1557531097168') repeat scroll center; -webkit-background-size: cover;";
+              tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fsuper_pion_gold.png?1558689066450') repeat scroll center; -webkit-background-size: cover;";
             }
             
             tdd.style.borderRadius = "35px";
