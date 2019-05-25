@@ -73,22 +73,22 @@ var wsserver = new ws.Server({
  // console.log("i'm "+myuser);
   //console.log("i'm here  "+connected_users[this.login]);
   console.log('session '+request.session);
-  let myuser = null;
-  wsconn.on('message', (data) => {
-      const parsed = JSON.parse(data);
-        //console.log(parsed);
-//***************************************************   j ai rajouter   ********************************************************
+  var myuser = null;
+  //***************************************************   j ai rajouter   ********************************************************
         if(request.session.login)    
           {
-            var myuser = new User(request.session.login,wsconn);
+            myuser = new User(request.session.login,wsconn);
             connected_users[request.session.login] = myuser ;
             wsconn.send(JSON.stringify({
                   type: 'new_connection',
-                  username: request.session.login
+                  user: request.session.login
                 }));
             wsserver.broadcastList();
           }
 //**********************************************************************************************************************************
+  wsconn.on('message', (data) => {
+      const parsed = JSON.parse(data);
+        //console.log(parsed);
         switch (parsed.type) {
 //*************************************************** j ai mis ça aussi en commentaire ********************************************************
         /*case 'new_connection':

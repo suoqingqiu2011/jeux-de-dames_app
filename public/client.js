@@ -22,8 +22,8 @@ const append = (node, type) => node.appendChild(document.createElement(type));
     button.textContent = 'Challenge';
     button.className = 'challenge';
     button.dataset.username = u.login;
-    if (u.state != 'AVAILABLE' && u.login != user)
-      button.disabled = true;
+//************************************************* j ai modifier **********************************
+    if (u.login == user){button.disabled = true;}
   }
   
   return table
@@ -37,6 +37,7 @@ const send = (ws, data) => ws.send(JSON.stringify(data));
 
 const ws = new WebSocket('wss://' + window.location.host)
 //*************************************************** j ai mis ça aussi en commentaire ********************************************************
+
 /*ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
    send(ws, { 
     type: 'new_connection', 
@@ -48,6 +49,7 @@ const ws = new WebSocket('wss://' + window.location.host)
     const parsed = JSON.parse(e.data);
     console.log(parsed);
     switch (parsed.type) {
+        
 //***************************************************   j ai rajouter   ********************************************************
       case 'new_connection':
         if(!user)
@@ -55,6 +57,7 @@ const ws = new WebSocket('wss://' + window.location.host)
           user = parsed.user;
         }
 //*******************************************************************************************************************************        
+        
       case 'userlist':
         if (status == 'available') {
           mainDiv.innerHTML = '';
