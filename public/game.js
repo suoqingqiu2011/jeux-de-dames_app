@@ -20,6 +20,7 @@ var nb_white = 20;
 var score_black = 0;
 var score_white = 0;
 
+//affichage du damier qui contiens des positions des pions , prevois de deplacer et prevois de manger
 function render(){
   
   var divt = document.querySelector('#resultat');
@@ -338,7 +339,7 @@ function render(){
    }*/
    console.log('********************');
 }
-
+//prevoir des positions apres manger des pions d'adversaires
 function pre_mange_position(i,j,row,column,tdd,turn){
   
     if(row<8&&column<8){
@@ -369,13 +370,14 @@ var turn = 1;
 var tmp_row=0;
 var tmp_col=0;
 var flag_choosen = 0;
-//var flag_change_color = 0;
 
+//la fonction implemente l'event addeventListener pour realiser des fonctionalites de deplacer et manger
 function play(row,column){
   var alerttxt = document.querySelector('#alarmetext');
     if((row+column)%2==1){
       alerttxt.innerHTML="";
       if(tableau[row][column] != 0){  
+        //permettre a  des pions
          if(tableau[row][column] != 3 && tableau[row][column] != 6 && (tableau[row][column] == turn||tableau[row][column] == 6-turn)){ 
          
            console.log("nb_step:"+nb_step);
@@ -607,7 +609,7 @@ function play(row,column){
   }
   
 }
-
+//les pions normaux fait des deplacements
 function deplacement(row,column,player){
 
    tableau[row][column]=player;
@@ -629,7 +631,7 @@ function deplacement(row,column,player){
    
 }
 
-// se deplacer sur un espace vide dans ma ligne droite
+// apres se deplacer sur un espace vide , le pion dans la place ancien est supprime
 function enlever_deplacement(row,column,player){
    
     if((row<9&&column<9&&tableau[row+1][column+1]==3)||(row<=9&&column<=9&&tableau[tmp_row][tmp_col]==6)){
@@ -653,7 +655,7 @@ function enlever_deplacement(row,column,player){
 
 var nb_continu_eating = 0;
 
-// la methode qui consiste a manger les pions 
+// la methode des pions normaux qui consiste a manger les pions 
 function mangerPion(row,column,player,alerttxt){
        
        if(((tmp_row==row-2)&&(tmp_col==column+2)&&((tableau[row-1][column+1]==3+player)||(tableau[row-1][column+1]==3-player)))||((tmp_row==row-2)&&(tmp_col==column-2)&&((tableau[row-1][column-1]==3+player)||(tableau[row-1][column-1]==3-player)))||((tmp_row==row+2)&&(tmp_col==column+2)&&((tableau[row+1][column+1]==3+player)||(tableau[row+1][column+1]==3-player)))||((tmp_row==row+2)&&(tmp_col==column-2)&&((tableau[row+1][column-1]==3+player)||(tableau[row+1][column-1]==3-player))) )
@@ -699,7 +701,7 @@ function mangerPion(row,column,player,alerttxt){
   
      
 } 
-//les pions dames mangent 
+//les pions dames mangent des pions d'adversaires
 function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
      
       if(tmp_row_col==player) {    
