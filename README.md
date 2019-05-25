@@ -26,6 +26,17 @@ Si des pions dames sont choisis, ils sont changé par **6**.
 ------------
 Pour vérifier l'état sur le `row` et le `column`, si on va aussi voir des états de ses voisins, `row+(-)i` et `column+(-)i` doivent bien respecter le limite de nombre des lignes et colonnes (`<=9`).
 
+
+`server.js` : conntenir handler's définitions et sockets listeners et emiters 
+
+handlers dans server.js :
+'/login' : permettre de entrer  Allows to check the user's credentials and logs him in to the game 
+'/logout' : Allows the logout of the user
+'/signup' : Allows to create a new user
+'/' : retourner à la page principale`/login`
+'/getConnectedUser' : Returns the list of connected users
+
+db_init.js : Data base configuration
 # User accounts
 
 Nous avons fait la partie d'affichage des userlist selon les références du lien <http://defeo.lu/aws/tutorials/accounts>.
