@@ -62,25 +62,27 @@ var wsserver = new ws.Server({
 });
 
 // We define the WebSocket logic
-  wsserver.on('connection', (wsconn,req) => {   console.log('ws session login '+ req.session.login);  console.log('ws session pass '+ req.session.pass);
+  wsserver.on('connection', (wsconn,req) => {   //console.log('ws session login '+ req.session.login);  console.log('ws session pass '+ req.session.pass);
   console.log('Received new WS connection');
-  var myuser = new User(req.session.login,wsconn);
+  /*var myuser = new User(req.session.login,wsconn);
   connected_users[req.session.login] = myuser ;
   console.log("i'm0 "+req.session.login);
   console.log("i'm "+myuser);
-  console.log("i'm here  "+connected_users[req.session.login]);
+  console.log("i'm here  "+connected_users[req.session.login]);*/
+  let myuser = null;
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const username= parsed.username;
+        const username= parsed.login;
+        connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
         wsserver.broadcastList();
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.username];
+        const opponent = connected_users[parsed.login];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
@@ -96,7 +98,7 @@ var wsserver = new ws.Server({
           // We send back an error
           wsconn.send(JSON.stringify({
             type: 'challenge_rejected',
-            username: parsed.username,
+            username: parsed.l,
           }));
         }
         break;
