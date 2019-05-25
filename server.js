@@ -87,7 +87,7 @@ var wsserver = new ws.Server({
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.data];
+        const opponent = connected_users[this.login];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
