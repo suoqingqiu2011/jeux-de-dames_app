@@ -147,8 +147,8 @@ wsserver.broadcastList = () => {
 app.use('/', express.static('public'));
 
 app.get('/', function(request, response) {
-  response.render('index.html');
- // response.redirect('/login');
+  //response.render('index.html');
+  response.redirect('/login');
 });
 // gestionnire qui gere la liste des utilisateurs 
 app.get('/userlist', async (req, res) => {
@@ -213,12 +213,13 @@ app.get('/login', (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.login '+req.body.email);
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.pass,
     email:req.body.email,
   }).first();
+  console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.login '+req.body.email);
   console.log('u login '+user.login);
   console.log('u pass '+user.pass);
   console.log('u email '+user.email);

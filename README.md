@@ -1,6 +1,6 @@
 # Structure du projet 
 ------------
-`server.js` : conntenir handler's définitions et sockets listeners et emiters 
+`server.js` : contenir handler's définitions et sockets listeners et emiters 
 
 handlers dans server.js :  
 `/login` : permettre de entrer sur la page `/userlist` pour jouer le jeux  
@@ -10,6 +10,8 @@ handlers dans server.js :
 `/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux  
 
 `db_init.js` : la configuration de database
+
+`client.js` : addEventListener pemettre faire le combat avec un autre
 
 `game.js` :  
 **Dames**  
