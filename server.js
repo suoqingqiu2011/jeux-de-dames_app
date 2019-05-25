@@ -78,7 +78,7 @@ var wsserver = new ws.Server({
         //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        //const username= parsed.username;  console.log("username: "+username); 
+        const username= parsed.username;  console.log("username: "+username); 
             
         //connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
@@ -208,7 +208,6 @@ app.post('/signin', async (req, res) => {
   }
 });
 
-
 // for the signin
 
 app.get('/login', (req, res) => { console.log('ici session login '+ req.session.login);  console.log('ici session pass '+ req.session.pass);
@@ -223,12 +222,8 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.pass,
-    email:req.body.email,
+    //email:req.body.email,
   }).first();
-  console.log('req.body.login '+req.body.login); console.log('req.body.pass '+req.body.pass); console.log('req.body.email '+req.body.email);
-  console.log('user login '+user.login);
-  console.log('user pass '+user.pass);
-  console.log('user email '+user.email);
   if (user) {
     req.session.login = user.login;  
     req.session.pass= user.pass; console.log('session login '+ req.session.login);  console.log('session pass '+ req.session.pass);
