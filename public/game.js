@@ -699,7 +699,7 @@ function mangerPion(row,column,player,alerttxt){
   
      
 } 
-
+//les pions dames mangent 
 function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
      
       if(tmp_row_col==player) {    
