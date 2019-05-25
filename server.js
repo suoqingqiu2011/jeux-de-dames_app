@@ -9,11 +9,12 @@ var User = require('./User').User;
 
 
 app.use(bodyP.urlencoded({ extended: false }));
-app.use(session({
+//************************************************************ j ai mis ça en commenatire **********************************
+/*app.use(session({
     secret: '12345',
     resave: false,
     saveUninitialized: false,
-}));
+}));*/
 
 var nunjucks = require('nunjucks');
 nunjucks.configure('views', {
@@ -71,24 +72,28 @@ var wsserver = new ws.Server({
   //console.log("i'm0 "+this.login);
  // console.log("i'm "+myuser);
   //console.log("i'm here  "+connected_users[this.login]);
-  console.log('session '+request.session.login);
+  console.log('session '+request.session);
   let myuser = null;
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
-        switch (parsed.type) {
-        case 'new_connection':
-          if(request.session.login)    
+        if(request.session.login)    
           {
             var myuser = new User(request.session.login,wsconn);
             connected_users[request.session.login] = myuser ;
-            //const username= parsed.username;  console.log("username: "+username); 
-
-          //connected_users[username] = myuser = new User(username, wsconn);
-          // We notify each user
             wsserver.broadcastList();
           }
-        break;
+        switch (parsed.type) {
+//*************************************************** j ai mis ça aussi en commentaire ********************************************************
+        /*case 'new_connection':
+        var myuser = new User(request.session.login,wsconn);
+        connected_users[request.session.login] = myuser ;
+        //const username= parsed.username;  console.log("username: "+username); 
+            
+        //connected_users[username] = myuser = new User(username, wsconn);
+        // We notify each user
+        wsserver.broadcastList();
+        break;*/
       case 'challenge':
         // We check that the invitation is valid
         const opponent = connected_users[this.login];
