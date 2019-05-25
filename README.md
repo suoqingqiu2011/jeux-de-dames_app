@@ -8,7 +8,7 @@ handlers dans server.js :
 `/signin` : permettre de créer un utilisateur  
 `/` : retourner à la page principale `/login`  
 `/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux  
-
+`/jeux` : permettre de commencer le jeux
 `db_init.js` : la configuration de database
 
 `client.js` : addEventListener pemettre faire le combat avec un autre
