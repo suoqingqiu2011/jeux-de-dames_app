@@ -63,6 +63,7 @@ var wsserver = new ws.Server({
 
 // We define the WebSocket logic
   wsserver.on('connection', (wsconn,req) => {   console.log('ws session login '+ req.session.login);  console.log('ws session pass '+ req.session.pass);
+                                                
   console.log('Received new WS connection');
                                              
   var myuser = new User(req.session.login,wsconn);
@@ -210,7 +211,7 @@ app.post('/signin', async (req, res) => {
 
 // for the signin
 
-app.get('/login', (req, res) => {
+app.get('/login', (req, res) => { console.log('ici session login '+ req.session.login);  console.log('ici session pass '+ req.session.pass);
   if (req.session.login) {
     res.redirect('/userlist');
   } else {

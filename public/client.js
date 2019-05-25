@@ -40,7 +40,7 @@ const ws = new WebSocket('wss://' + window.location.host)
 ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
    send(ws, { 
     type: 'new_connection', 
-    username: sessionStorage.username,
+    //username: sessionStorage.username,
   });
  
   
