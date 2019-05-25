@@ -215,7 +215,7 @@ app.post('/login', async (req, res) => {
     pass: req.body.pass,
     email:req.body.email,
   }).first();
- // console.log('login '+user.login);
+  console.log('login '+user.login);
   console.log('pass '+user.pass);
   console.log('email '+user.email);
   if (user) {
