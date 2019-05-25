@@ -170,9 +170,9 @@ function render(){
                 }
                 
                 for(var p = 1; p <= 9;p++){              
-                  // if(((tmp_row+p<=9&&tmp_col+p<=9)?(tableau[tmp_row+p][tmp_col+p]==player-3||tableau[tmp_row+p][tmp_col+p]==9-player):0)||((tmp_row+p<=9&&tmp_col-p>=0)?(tableau[tmp_row+p][tmp_col-p]==player-3||tableau[tmp_row+p][tmp_col-p]==9-player):0)||((tmp_row-p>=0&&tmp_col+p<=9)?(tableau[tmp_row-p][tmp_col+p]==player-3||tableau[tmp_row-p][tmp_col+p]==9-player):0)||((tmp_row-p>=0&&tmp_col-p>=0)?(tableau[tmp_row-p][tmp_col-p]==player-3||tableau[tmp_row-p][tmp_col-p]==9-player):0)){ 
+                  
                    if((tableau[i][j]==0&&((i+j)%2==1))&&i+p<=9&&j+p<=9){
-                    
+                    //prevoir la position des pions dames sur la diagonale avant gauche apres manger
                      if(tableau[i+p][j+p]!=0){
                        if(tableau[i+p][j+p]!=6){
                          for(var q = 1; q <= 9;q++){
@@ -182,7 +182,7 @@ function render(){
                                 break;
                            }
                          }
-                         
+                         // prevoir la position de deplacement de pions dames sur la diagonale avant gauche
                        }else if(tableau[i+p][j+p]==6){   
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                        }else{
@@ -194,7 +194,7 @@ function render(){
                 }
               for(var p = 1; p <= 9;p++){ 
                    if((tableau[i][j]==0&&((i+j)%2==1))&&i+p<=9&&j-p>=0){
-                    
+                    //prevoir la position des pions dames sur la diagonale avant droite apres manger
                      if(tableau[i+p][j-p]!=0){
                        if(tableau[i+p][j-p]!=6){
                          for(var q = 1; q <= 9;q++){
@@ -204,7 +204,7 @@ function render(){
                                 break;
                            }
                          }
-                         
+                          // prevoir la position de deplacement de pions dames sur la diagonale avant droite
                        }else if(tableau[i+p][j-p]==6){  
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
@@ -216,7 +216,7 @@ function render(){
               }
               for(var p = 1; p <= 9;p++){ 
                    if((tableau[i][j]==0&&((i+j)%2==1))&&i-p>=0&&j+p<=9){
-                    
+                    //prevoir la position des pions dames sur la diagonale arriere gauche apres manger
                      if(tableau[i-p][j+p]!=0){
                        if(tableau[i-p][j+p]!=6){
                          for(var q = 1; q <= 9;q++){
@@ -226,7 +226,7 @@ function render(){
                                 break;
                            }
                          }
-                         
+                         // prevoir la position de deplacement de pions dames sur la diagonale arriere gauche
                        }else if(tableau[i-p][j+p]==6){  
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
@@ -238,7 +238,7 @@ function render(){
               }
               for(var p = 1; p <= 9;p++){ 
                    if((tableau[i][j]==0&&((i+j)%2==1))&&i-p>=0&&j-p>=0){
-                     
+                     //prevoir la position des pions dames sur la diagonale arriere droite apres manger
                      if(tableau[i-p][j-p]!=0){
                        if(tableau[i-p][j-p]!=6){
                          for(var q = 1; q <= 9;q++){
@@ -248,7 +248,7 @@ function render(){
                                 break;
                            }
                          }
-                         
+                         // prevoir la position de deplacement de pions dames sur la diagonale arriere droite
                        }else if(tableau[i-p][j-p]==6){ 
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
@@ -260,7 +260,7 @@ function render(){
               }
             
             }
-            
+            //choisir le pions normal pour commencer des fonctionalites
           }else if(tableau[i][j]==3){
             console.log("here tmp_row_col:"+tmp_row_col);
             tdd.className ="choosen";   
@@ -273,7 +273,7 @@ function render(){
               
             tdd.style.borderRadius = "35px";
             tdd.style.border= "3px solid blue";
-     
+           //choisir le pions dames pour commencer des fonctionalites
            }else if(tableau[i][j]==6){
             //console.log("here tmp_row_col:"+tmp_row_col);
             tdd.className ="choosen_super";   
@@ -292,6 +292,7 @@ function render(){
       tab.appendChild(trr);
     }
   divv.appendChild(tab);
+  //poser des pions sur le damier
   tab.addEventListener('click', function(event) { 
       var row = event.target.dataset.row;
       var column = event.target.dataset.column;
