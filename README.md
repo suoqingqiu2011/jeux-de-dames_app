@@ -1,3 +1,8 @@
+NOM :  
+LIU Bin  
+KONE N'goman Tohaerou
+
+
 # Structure du projet 
 ------------
 `server.js` : contenir handler's définitions et sockets listeners et emiters 
