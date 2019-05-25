@@ -16,7 +16,9 @@ const append = (node, type) => node.appendChild(document.createElement(type));
     const row = append(table, 'tr');
     append(row, 'td').textContent = u.login;
     
-    
+    if (!sessionStorage.username) {
+      sessionStorage.username = u.login;
+    } 
     
     const button = append(append(row, 'th'), 'button');
     button.textContent = 'Challenge';
@@ -40,6 +42,7 @@ const ws = new WebSocket('wss://' + window.location.host)
 ws.addEventListener('open', function(e) {
    send(ws, { 
     type: 'new_connection', 
+    username: sessionStorage.username,
   });
 
   ws.addEventListener('message', function(e) {

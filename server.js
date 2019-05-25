@@ -75,14 +75,14 @@ var wsserver = new ws.Server({
         //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const username= parsed.login;
+        const username= parsed.username;  console.log("username: "+username);
         connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
         wsserver.broadcastList();
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.login];
+        const opponent = connected_users[parsed.username];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
@@ -98,7 +98,7 @@ var wsserver = new ws.Server({
           // We send back an error
           wsconn.send(JSON.stringify({
             type: 'challenge_rejected',
-            username: parsed.l,
+            username: parsed.username,
           }));
         }
         break;
