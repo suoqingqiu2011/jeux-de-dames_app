@@ -188,9 +188,9 @@ app.post('/signin', async (req, res) => {
     email: req.body.email,
     //color2: req.body.color2,
   };
-  console.log('d login '+data.login);
-  console.log('d pass '+data.pass);
-  console.log('d email '+data.email);
+  //console.log('d login '+data.login);
+  //console.log('d pass '+data.pass);
+  //console.log('d email '+data.email);
   try {
     if (data.login 
         && data.pass
