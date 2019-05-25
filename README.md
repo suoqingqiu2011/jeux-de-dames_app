@@ -3,10 +3,10 @@
 `server.js` : contenir handler's définitions et sockets listeners et emiters 
 
 handlers dans server.js :  
+`/` : retourner à la page principale `/login`  
 `/login` : permettre de entrer sur la page `/userlist` pour jouer le jeux  
 `/logout` : permettre de sortir du compte  
 `/signin` : permettre de créer un utilisateur  
-`/` : retourner à la page principale `/login`  
 `/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux  
 `/jeux` : permettre de commencer le jeux
 `db_init.js` : la configuration de database
