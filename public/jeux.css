@@ -44,26 +44,31 @@ tr:nth-child(even) td:nth-child(even){
 
 #resultat{
   position: absolute;
-  width: 200px;
+  width: 15%;
   height: 160px;
   background: white url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fback6.jpg?1557059397716') repeat scroll center; 
-  margin: 10px auto;
-  right: 160px;
+  margin: 0px auto;
+  right: 5%;
   color: white;
   text-shadow: 2px 2px 2px black;
+  font-size: 80%;
 }
 
 ul{
-  width:190px;
+  width:90%;
   height:80px;
   text-align:center;
   padding-inline-start: 0px;
-  margin: 10px auto;
+  margin: 0px auto;
+  margin-top:10px;
+  margin-bottom:10px;
   border: 1px solid brown;
+  margin-inline-start: 2%;
+  margin-inline-end: 5%;
 }
 
 li{
-  width:180px;
+  width:95%;
   height:36px;
   text-align:center;
   list-style: none;
@@ -71,8 +76,8 @@ li{
 }
 
 img{
-  width:33px;
-  height:33px;
+  width: 19%;
+  height: 100%;
   vertical-align: middle;
   margin: 0 5px 0 5px;
 }
@@ -80,7 +85,7 @@ img{
 #userpion{  
   font-weight:bold; 
   color:white; 
-  height:33px;
-  width :33px;
+  width: 19%;
+  height: 100%;
   vertical-align: middle;
 }

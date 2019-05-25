@@ -3,17 +3,17 @@
 `server.js` : conntenir handler's définitions et sockets listeners et emiters 
 
 handlers dans server.js :  
-`/login` : permettre de entrer sur la page `/userlist` pour jouer le jeux 
-`/logout` : permettre de sortir du compte
-`/signin` : permettre de créer un utilisateur
-`/` : retourner à la page principale `/login`
-`/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux
+`/login` : permettre de entrer sur la page `/userlist` pour jouer le jeux  
+`/logout` : permettre de sortir du compte  
+`/signin` : permettre de créer un utilisateur  
+`/` : retourner à la page principale `/login`  
+`/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux  
 
-`db_init.js` : Data base configuration
+`db_init.js` : la configuration de database
 
-**Dames**
+`game.js` :  
+**Dames**  
 
-`game.js` :
 Nous avons fait ce jeux en fonction du **TD sur Puissance 4** (voir le lien <http://defeo.lu/aws/tutorials/tutorial2>).  
 Des pions sont distribués selon des différents valuations de `tableau[row][column]`. 
 Pour tout l'affichage de performance, nous récupérons des valeurs de `td.dataset.row` et `td.dataset.column` et implémenter ce que des pions vont réaliser des fonctionalités dans cette position.  

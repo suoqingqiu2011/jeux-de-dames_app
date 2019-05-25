@@ -27,7 +27,7 @@ function render(){
   usertext.id='usertext';
   for(var i = 0; i < 2 ;i++){
     var lii = document.createElement('li');
-    lii.innerHTML=" player "+(i+1);
+    lii.innerHTML="player"+(i+1);
     var img = document.createElement('img');
     img.width="33px";
     img.height="33px";
@@ -158,7 +158,7 @@ function render(){
                 if(turn==2){
                    // les possibilités pour manger et se deplacer dans le dames
                   if(((row<8&&column<8)?((tableau[i+1][j+1]==1||tableau[i+1][j+1]==5)&&tableau[i+2][j+2]==3):0)||((row<8&&column>1)?((tableau[i+1][j-1]==1||tableau[i+1][j-1]==5)&&tableau[i+2][j-2]==3):0)||((row>1&&column<8)?((tableau[i-1][j+1]==1||tableau[i-1][j+1]==5)&&tableau[i-2][j+2]==3):0)||((row>1&&column>1)?((tableau[i-1][j-1]==1||tableau[i-1][j-1]==5)&&tableau[i-2][j-2]==3):0)){  
-                      pre_mange_position(i,j,row,column,tdd,2); console.log('783');
+                      pre_mange_position(i,j,row,column,tdd,2); 
                     
                   }else if(((row>0&&column<9)?(tableau[i-1][j+1]==3):0)||((row>0&&column>0)?(tableau[i-1][j-1]==3):0)){  // lorsque j'utilise un pion il change de couleur dans le cas 3 
                     console.log('7831');
@@ -175,14 +175,14 @@ function render(){
                      if(tableau[i+p][j+p]!=0){
                        if(tableau[i+p][j+p]!=6){
                          for(var q = 1; q <= 9;q++){
-                           if((i+p+q<=9&&j+p+q<=9)?tableau[i+p+q][j+p+q]==6:0){   console.log('pre eating1 '+(i+'+'+p)+' '+(j+'+'+p)+' '+'tableau['+(i+p)+']['+(j+p)+']: '+tableau[i+p][j+p]+' i: '+i+' j: '+j);
+                           if((i+p+q<=9&&j+p+q<=9)?tableau[i+p+q][j+p+q]==6:0){  
                              tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                            }else if((i+p+q<=9&&j+p+q<=9)?tableau[i+p+q][j+p+q]!=6:0){
                                 break;
                            }
                          }
                          
-                       }else if(tableau[i+p][j+p]==6){   console.log('pre moving1 '+(i+'+'+p)+' '+(j+'+'+p)+' '+'tableau['+(i+p)+']['+(j+p)+']: '+tableau[i+p][j+p]+' i: '+i+' j: '+j);
+                       }else if(tableau[i+p][j+p]==6){   
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                        }else{
                          break;
@@ -197,14 +197,14 @@ function render(){
                      if(tableau[i+p][j-p]!=0){
                        if(tableau[i+p][j-p]!=6){
                          for(var q = 1; q <= 9;q++){
-                           if((i+p+q<=9&&j-p-q>=0)?tableau[i+p+q][j-p-q]==6:0){   console.log('pre eating2 '+(i+'+'+p)+' '+(j+'-'+p)+' '+'tableau['+(i+p)+']['+(j-p)+']: '+tableau[i+p][j-p]+' i: '+i+' j: '+j);
+                           if((i+p+q<=9&&j-p-q>=0)?tableau[i+p+q][j-p-q]==6:0){  
                              tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                            }else if((i+p+q<=9&&j-p-q>=0)?tableau[i+p+q][j-p-q]!=6:0){
                                 break;
                            }
                          }
                          
-                       }else if(tableau[i+p][j-p]==6){  console.log('pre moving2 '+(i+'+'+p)+' '+(j+'-'+p)+' '+'tableau['+(i+p)+']['+(j-p)+']: '+tableau[i+p][j-p]+' i: '+i+' j: '+j);
+                       }else if(tableau[i+p][j-p]==6){  
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
                          break;
@@ -219,14 +219,14 @@ function render(){
                      if(tableau[i-p][j+p]!=0){
                        if(tableau[i-p][j+p]!=6){
                          for(var q = 1; q <= 9;q++){
-                           if((i-p-q>=0&&j+p+q<=9)?tableau[i-p-q][j+p+q]==6:0){   console.log('pre eating3 '+(i+'-'+p)+' '+(j+'+'+p)+' '+'tableau['+(i-p)+']['+(j+p)+']: '+tableau[i-p][j+p]+' i: '+i+' j: '+j);
+                           if((i-p-q>=0&&j+p+q<=9)?tableau[i-p-q][j+p+q]==6:0){   
                              tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                            }else if((i-p-q>=0&&j+p+q<=9)?tableau[i-p-q][j+p+q]!=6:0){
                                 break;
                            }
                          }
                          
-                       }else if(tableau[i-p][j+p]==6){  console.log('pre moving3 '+(i+'-'+p)+' '+(j+'+'+p)+' '+'tableau['+(i-p)+']['+(j+p)+']: '+tableau[i-p][j+p]+' i: '+i+' j: '+j);
+                       }else if(tableau[i-p][j+p]==6){  
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
                          break;
@@ -241,14 +241,14 @@ function render(){
                      if(tableau[i-p][j-p]!=0){
                        if(tableau[i-p][j-p]!=6){
                          for(var q = 1; q <= 9;q++){
-                           if((i-p-q>=0&&j-p-q>=0)?tableau[i-p-q][j-p-q]==6:0){   console.log('pre eating4 '+(i+'-'+p)+' '+(j+'-'+p)+' '+'tableau['+(i-p)+']['+(j-p)+']: '+tableau[i-p][j-p]+' i: '+i+' j: '+j);
+                           if((i-p-q>=0&&j-p-q>=0)?tableau[i-p-q][j-p-q]==6:0){   
                              tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;"; 
                            }else if((i-p-q>=0&&j-p-q>=0)?tableau[i-p-q][j-p-q]!=6:0){
                                 break;
                            }
                          }
                          
-                       }else if(tableau[i-p][j-p]==6){ console.log('pre moving4 '+(i+'-'+p)+' '+(j+'-'+p)+' '+'tableau['+(i-p)+']['+(j-p)+']: '+tableau[i-p][j-p]+' i: '+i+' j: '+j);
+                       }else if(tableau[i-p][j-p]==6){ 
                          tdd.style="-webkit-animation:twinkling 1.5s infinite ease-in-out alternate; background: blue;";  
                        }else{
                          break;
@@ -269,13 +269,12 @@ function render(){
             }else if(turn==2){
               tdd.style="background:rgb(205,141,80) url('https://cdn.glitch.com/e95d2bec-803c-4cf7-9842-75a2a6969008%2Fpion_gold.png?1557156089606') repeat scroll center; -webkit-background-size: cover;";
             }
-              //tmp_row_col = 0;
-            //}
+              
             tdd.style.borderRadius = "35px";
             tdd.style.border= "3px solid blue";
      
            }else if(tableau[i][j]==6){
-            console.log("here tmp_row_col:"+tmp_row_col);
+            //console.log("here tmp_row_col:"+tmp_row_col);
             tdd.className ="choosen_super";   
             
             if(turn==1){
@@ -376,25 +375,24 @@ function play(row,column){
   var alerttxt = document.querySelector('#alarmetext');
     if((row+column)%2==1){
       alerttxt.innerHTML="";
-      if(tableau[row][column] != 0){  console.log("tableau[row][column] :"+tableau[row][column] +" turn: "+turn);
+      if(tableau[row][column] != 0){  
          if(tableau[row][column] != 3 && tableau[row][column] != 6 && (tableau[row][column] == turn||tableau[row][column] == 6-turn)){ 
          
            console.log("nb_step:"+nb_step);
            if(flag_choosen==1){
-             console.log("i am here");
+             
              if(tableau[tmp_row][tmp_col]!=3 && tableau[tmp_row][tmp_col] != 6){
                flag_choosen=0;
              }
              
-             console.log("old: tmp_row_col:"+tmp_row_col+" tableau["+row+"]["+column+"]:"+tableau[row][column]);
-             
+           
              if(tableau[row][column] == tmp_row_col||tableau[row][column] == 6-tmp_row_col){
-               console.log("same here");
+               //console.log("same here");
                tableau[tmp_row][tmp_col] = tmp_row_col;
                tmp_row_col = tableau[row][column];
                flag_choosen=1; 
              }else if(tableau[row][column] != tmp_row_col&&tableau[row][column] != 6-tmp_row_col){
-                console.log("not same here");
+                //console.log("not same here");
                if(tableau[tmp_row][tmp_col]!=4&&tableau[tmp_row][tmp_col]!=5){
                  tableau[tmp_row][tmp_col]= 3-turn;   
                }else if(tableau[tmp_row][tmp_col]==4||tableau[tmp_row][tmp_col]==5){
@@ -403,9 +401,6 @@ function play(row,column){
                 tmp_row_col = tableau[row][column];               
                 flag_choosen=1;  
              }
-           
-             console.log("new: tmp_row_col:"+tmp_row_col);
-             console.log('tmp: tableau['+tmp_row+']['+tmp_col+']= '+tableau[tmp_row][tmp_col]);
              
            }else if(flag_choosen==0){
              flag_choosen=1;               
@@ -418,8 +413,7 @@ function play(row,column){
            }else if((row!=0&&tmp_row_col!=5)||(row!=9&&tmp_row_col!=4)){
              tableau[row][column]=3;
            }
-           console.log('new: tableau['+row+']['+column+']= '+tableau[row][column]);
-           //console.log('flag_change_color '+flag_change_color);
+          
            
          }else{
            var color="";
@@ -432,10 +426,10 @@ function play(row,column){
            alert("It's the turn for your enemy '"+color+"' !");
          }
              
-         console.log('choosen : tableau['+row+']['+column+']='+tableau[row][column]);
+        // console.log('choosen : tableau['+row+']['+column+']='+tableau[row][column]);
          
       }else if(tableau[row][column]==0){
-           console.log('manger : tmp  tableau['+tmp_row+']['+tmp_col+']='+tableau[tmp_row][tmp_col]+" tmp_row_col "+tmp_row_col);
+          
           if(tmp_row_col==1){ 
              if(((tmp_row==row-2)&&(tmp_col==column+2)&&(tableau[row-1][column+1]==3-turn||tableau[row-1][column+1]==3+turn))||((tmp_row==row-2)&&(tmp_col==column-2)&&(tableau[row-1][column-1]==3-turn||tableau[row-1][column-1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column+2)&&(tableau[row+1][column+1]==3-turn||tableau[row+1][column+1]==3+turn))||((tmp_row==row+2)&&(tmp_col==column-2)&&(tableau[row+1][column-1]==3-turn||tableau[row+1][column-1]==3+turn)) )
                {  console.log("mange1");
@@ -463,19 +457,19 @@ function play(row,column){
                alert("Can't move the chess piece here.");
              }   
           }
-          console.log('super deplacer: tmp_row_col: '+tmp_row_col+'tableau['+tmp_row+']['+tmp_col+']='+tableau[tmp_row][tmp_col]);
+          
           if((tmp_row_col==4||tmp_row_col==5)&&tableau[tmp_row][tmp_col]==6){   
             
             if(((row-column)==(tmp_row-tmp_col)||(row+column)==(tmp_row+tmp_col))){
-                console.log('ssssssss: tableau['+row+']['+column+']='+tableau[row][column]);
+                
                  var proche_row=0;
                  var proche_col=0;  
                  for(var p = 0; p <= 9;p++){  
                  
                    if(((tmp_row+p<=9&&tmp_col+p<=9)?((tableau[tmp_row+p][tmp_col+p]!=0&&tableau[tmp_row+p][tmp_col+p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col+p==9&&column<=9)):0)&&tmp_row<=row&&tmp_col<=column){ console.log('tmp_row+p '+(tmp_row+p)+' tmp_col+p '+(tmp_col+p));
-                     // if((tableau[tmp_row+p][tmp_col+p]!=0&&tableau[tmp_row+p][tmp_col+p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col+p==9&&column<=9)){
+                     
                         proche_row=tmp_row+p;
-                        proche_col=tmp_col+p;   console.log('super1 tableau['+(tmp_row+p)+']['+(tmp_col+p)+']: '+tableau[tmp_row+p][tmp_col+p]);
+                        proche_col=tmp_col+p;   
                        
                         if(((proche_row>row&&proche_col>column&&tableau[tmp_row+p][tmp_col+p]!=6&&(tableau[tmp_row+p][tmp_col+p]==turn||tableau[tmp_row+p][tmp_col+p]==6-turn||((tableau[tmp_row+p][tmp_col+p]==3-turn||tableau[tmp_row+p][tmp_col+p]==3+turn)&&((tmp_row+p+1<=9&&tmp_col+p+1<=9)?tableau[tmp_row+p+1][tmp_col+p+1]!=0:1))))||(tmp_row+p==9&&row<=9)||(tmp_col+p==9&&column<=9))&&(tmp_row+p<=9||tmp_col+p<=9)&&(row-column)==(tmp_row-tmp_col)){
                            
@@ -501,10 +495,10 @@ function play(row,column){
                           break;
                         }  
                         break;
-                     // }
+                     
                   }
                    if(((tmp_row+p<=9&&tmp_col-p>=0)?((tableau[tmp_row+p][tmp_col-p]!=0&&tableau[tmp_row+p][tmp_col-p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col-p==0&&column>=0)):0)&&tmp_row<=row&&tmp_col>=column){ console.log('tmp_row+p '+(tmp_row+p)+' tmp_col-p '+(tmp_col-p));
-                     //if((tableau[tmp_row+p][tmp_col-p]!=0&&tableau[tmp_row+p][tmp_col-p]!=6)||(tmp_row+p==9&&row<=9)||(tmp_col-p==0&&column>=0)){
+                     
                         proche_row=tmp_row+p;
                         proche_col=tmp_col-p; console.log('super2 tableau['+(tmp_row+p)+']['+(tmp_col-p)+']: '+tableau[tmp_row+p][tmp_col-p]);
                        
@@ -534,7 +528,7 @@ function play(row,column){
                   }
                            
                    if(((tmp_row-p>=0&&tmp_col+p<=9)?((tableau[tmp_row-p][tmp_col+p]!=0&&tableau[tmp_row-p][tmp_col+p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col+p==9&&column<=9)):0)&&tmp_row>=row&&tmp_col<=column){ console.log('tmp_row-p '+(tmp_row-p)+' tmp_col+p '+(tmp_col+p));
-                      // if((tableau[tmp_row-p][tmp_col+p]!=0&&tableau[tmp_row-p][tmp_col+p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col+p==9&&column<=9)){
+                      
                         proche_row=tmp_row-p;
                         proche_col=tmp_col+p; console.log('super3 tableau['+(tmp_row-p)+']['+(tmp_col+p)+']: '+tableau[tmp_row-p][tmp_col+p]);
                       
@@ -560,12 +554,12 @@ function play(row,column){
                           break;
                        }     
                          break;
-                     // } 
+                      
                   }                           
                                                 
                    
                    if(((tmp_row-p>=0&&tmp_col-p>=0)?((tableau[tmp_row-p][tmp_col-p]!=0&&tableau[tmp_row-p][tmp_col-p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col-p==0&&column>=0)):0)&&tmp_row>=row&&tmp_col>=column){ console.log('tmp_row-p '+(tmp_row-p)+' tmp_col-p '+(tmp_col-p));
-                     //if((tableau[tmp_row-p][tmp_col-p]!=0&&tableau[tmp_row-p][tmp_col-p]!=6)||(tmp_row-p==0&&row>=0)||(tmp_col-p==0&&column>=0)){
+                     
                         proche_row=tmp_row-p;
                         proche_col=tmp_col-p; console.log('super4 tableau['+(tmp_row-p)+']['+(tmp_col-p)+']: '+tableau[tmp_row-p][tmp_col-p]);
                        
@@ -592,7 +586,7 @@ function play(row,column){
                           break;
                        } 
                        break;
-                     //}   
+                        
                   } 
                                                   
                 }
@@ -630,15 +624,14 @@ function deplacement(row,column,player){
     tmp_row=row;
    tmp_col=column;
   
-   //console.log("i am here1.. tmp_row_col:"+tmp_row_col);
+  
    nb_step++;
-   //console.log('row'+row);
-   console.log('deplacer: tableau['+row+']['+column+']='+tableau[row][column]);
+   
 }
 
 // se deplacer sur un espace vide dans ma ligne droite
 function enlever_deplacement(row,column,player){
-   console.log('enlever: tableau['+tmp_row+']['+tmp_col+']'+ tableau[tmp_row][tmp_col]);
+   
     if((row<9&&column<9&&tableau[row+1][column+1]==3)||(row<=9&&column<=9&&tableau[tmp_row][tmp_col]==6)){
    
       tableau[tmp_row][tmp_col]=0; console.log("here2");
@@ -694,10 +687,10 @@ function mangerPion(row,column,player,alerttxt){
                tableau[row][column]=4;
                tmp_row_col=4;
              }
-             console.log('bord1: tableau['+row+']['+column+']: '+tableau[row][column]);
+            
              nb_continu_eating = 0;
              turn = 3 - turn;
-             console.log("final turn1: "+turn);
+             
              
            }
          
@@ -708,13 +701,11 @@ function mangerPion(row,column,player,alerttxt){
 } 
 
 function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
-      console.log("super manger player: "+player);
+     
       if(tmp_row_col==player) {    
 
            nb_step++;
-           console.log("wo shi 11111 "+turn);
-  
-          console.log('tmp bord2: tableau['+tmp_row+']['+tmp_col+']: '+tableau[tmp_row][tmp_col]);
+          
            tableau[tmp_row][tmp_col]=0; 
            tableau[superRow][superCol]=0;
           //noter le nb de pions restes
@@ -723,7 +714,7 @@ function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
           }else if(turn==2){
             nb_black=nb_black-1;
           }
-          console.log('superRow: '+superRow +' superCol: '+superCol);
+         
            tmp_row=row;
            tmp_col=column;
           //les pions dames se posent dans des nouvelles places
@@ -744,11 +735,7 @@ function mangerPionSuper(row,column,superRow,superCol,player,alerttxt){
                 console.log('verifier superpion');
 
                  if(((tmp_row+p+1<=9&&tmp_col+p+1<=9)?(tableau[tmp_row+p+1][tmp_col+p+1]==0&&(tableau[tmp_row+p][tmp_col+p]==player-3||tableau[tmp_row+p][tmp_col+p]==9-player)):false)||((tmp_row+p+1<=9&&tmp_col-p-1>=0)?(tableau[tmp_row+p+1][tmp_col-p-1]==0&&(tableau[tmp_row+p][tmp_col-p]==player-3||tableau[tmp_row+p][tmp_col-p]==9-player)):false)||((tmp_row-p-1>=0&&tmp_col+p+1<=9)?(tableau[tmp_row-p-1][tmp_col+p+1]==0&&(tableau[tmp_row-p][tmp_col+p]==player-3||tableau[tmp_row-p][tmp_col+p]==9-player)):false)||((tmp_row-p-1>=0&&tmp_col-p-1>=0)?(tableau[tmp_row-p-1][tmp_col-p-1]==0&&(tableau[tmp_row-p][tmp_col-p]==player-3||tableau[tmp_row-p][tmp_col-p]==9-player)):false)){
-                   /*if(tmp_row+p<=9&&tmp_col+p<=9){console.log((tmp_row+'+'+p)+' '+(tmp_col+'+'+p)+' '+'tableau['+(tmp_row+p)+']['+(tmp_col+p)+']: '+tableau[tmp_row+p][tmp_col+p]+' tableau['+(tmp_row+p+1)+']['+(tmp_col+p+1)+']: '+tableau[tmp_row+p+1][tmp_col+p+1]);}
-                   if(tmp_row+p<=9&&tmp_col-p>=0){console.log((tmp_row+'+'+p)+' '+(tmp_col+'-'+p)+' '+'tableau['+(tmp_row+p)+']['+(tmp_col-p)+']: '+tableau[tmp_row+p][tmp_col-p]+' tableau['+(tmp_row+p+1)+']['+(tmp_col-p-1)+']: '+tableau[tmp_row+p+1][tmp_col-p-1]);} 
-                   if(tmp_row-p>=0&&tmp_col+p<=9){console.log((tmp_row+'-'+p)+' '+(tmp_col+'+'+p)+' '+'tableau['+(tmp_row-p)+']['+(tmp_col+p)+']: '+tableau[tmp_row-p][tmp_col+p]+' tableau['+(tmp_row-p-1)+']['+(tmp_col+p+1)+']: '+tableau[tmp_row-p-1][tmp_col+p+1]);}
-                   if(tmp_row-p>=0&&tmp_col-p>=0){console.log((tmp_row+'-'+p)+' '+(tmp_col+'-'+p)+' '+'tableau['+(tmp_row-p)+']['+(tmp_col-p)+']: '+tableau[tmp_row-p][tmp_col-p]+' tableau['+(tmp_row-p-1)+']['+(tmp_col-p-1)+']: '+tableau[tmp_row-p-1][tmp_col-p-1]);}
-                  */
+                  
                    alerttxt.innerHTML = "you don't finish eating the pions";
                    tableau[row][column]=6; 
                    break;
@@ -841,7 +828,7 @@ function removeEle(){
 }
 
 //verifier s'il y a encore des pions. s'il ne reste plus, l'adversaire va gagner.
-function win(player) {  console.log("turn: "+turn+" want to win here. Score black: "+score_black+" Score white: "+score_white);
+function win(player) {  
                       
     var color="";
      if(3-player==1){

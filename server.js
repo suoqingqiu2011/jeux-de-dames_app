@@ -147,8 +147,8 @@ wsserver.broadcastList = () => {
 app.use('/', express.static('public'));
 
 app.get('/', function(request, response) {
- // response.render('login.html');
-  response.redirect('/login');
+  response.render('login.html');
+ // response.redirect('/login');
 });
 // gestionnire qui gere la liste des utilisateurs 
 app.get('/userlist', async (req, res) => {
