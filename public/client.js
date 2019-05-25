@@ -22,7 +22,7 @@ const append = (node, type) => node.appendChild(document.createElement(type));
     button.textContent = 'Challenge';
     button.className = 'challenge';
     button.dataset.username = u.login;
-    if (u.state != 'AVAILABLE')
+    if (u.state != 'AVAILABLE' && u.login != user)
       button.disabled = true;
   }
   
@@ -36,18 +36,25 @@ let status = 'available';
 const send = (ws, data) => ws.send(JSON.stringify(data));
 
 const ws = new WebSocket('wss://' + window.location.host)
-
-ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
+//*************************************************** j ai mis ça aussi en commentaire ********************************************************
+/*ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
    send(ws, { 
     type: 'new_connection', 
     //username: tho,
-  });
- 
+  });*/
+//********************************************************************************************************************************************* 
   
   ws.addEventListener('message', function(e) {
     const parsed = JSON.parse(e.data);
     console.log(parsed);
     switch (parsed.type) {
+//***************************************************   j ai rajouter   ********************************************************
+      case 'new_connection':
+        if(!user)
+        {
+          user = parsed.user;
+        }
+//*******************************************************************************************************************************        
       case 'userlist':
         if (status == 'available') {
           mainDiv.innerHTML = '';
@@ -88,4 +95,3 @@ ws.addEventListener('open', function(e) {  console.log("sessionStorage "+session
       send(ws, { type: 'quit' });
     }
   });
-});

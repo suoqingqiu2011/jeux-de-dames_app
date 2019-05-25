@@ -15,7 +15,7 @@ app.use(bodyP.urlencoded({ extended: false }));
     resave: false,
     saveUninitialized: false,
 }));*/
-
+//***************************************************************************************************************************
 var nunjucks = require('nunjucks');
 nunjucks.configure('views', {
     express: app,
@@ -77,12 +77,18 @@ var wsserver = new ws.Server({
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
+//***************************************************   j ai rajouter   ********************************************************
         if(request.session.login)    
           {
             var myuser = new User(request.session.login,wsconn);
             connected_users[request.session.login] = myuser ;
+            wsconn.send(JSON.stringify({
+                  type: 'new_connection',
+                  username: request.session.login
+                }));
             wsserver.broadcastList();
           }
+//**********************************************************************************************************************************
         switch (parsed.type) {
 //*************************************************** j ai mis ça aussi en commentaire ********************************************************
         /*case 'new_connection':
@@ -94,6 +100,7 @@ var wsserver = new ws.Server({
         // We notify each user
         wsserver.broadcastList();
         break;*/
+//*********************************************************************************************************************************************
       case 'challenge':
         // We check that the invitation is valid
         const opponent = connected_users[this.login];
