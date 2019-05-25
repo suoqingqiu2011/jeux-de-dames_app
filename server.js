@@ -217,15 +217,15 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.pass,
-    email:req.body.email,
+    //email:req.body.email,
   }).first();
-  console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.login '+req.body.email);
+  console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.email '+req.body.email);
   console.log('u login '+user.login);
   console.log('u pass '+user.pass);
   console.log('u email '+user.email);
   if (user) {
-    req.session.login = user.login;
-    req.session.pass= user.pass;
+    req.session.login = user.login;  
+    req.session.pass= user.pass; console.log('session login '+ req.session.login);  console.log('session pass '+ req.session.pass);
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
