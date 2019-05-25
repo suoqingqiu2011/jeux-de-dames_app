@@ -62,7 +62,7 @@ var wsserver = new ws.Server({
 });
 
 // We define the WebSocket logic
-  wsserver.on('connection', (wsconn,req) => {
+  wsserver.on('connection', (wsconn,req) => {   console.log('ws session login '+ req.session.login);  console.log('ws session pass '+ req.session.pass);
   console.log('Received new WS connection');
   var myuser = new User(req.session.login,wsconn);
   connected_users[req.session.login] = myuser ;
@@ -151,12 +151,12 @@ app.get('/', function(request, response) {
   response.redirect('/login');
 });
 // gestionnire qui gere la liste des utilisateurs 
-app.get('/userlist', async (req, res) => {
- /* if (req.session.user) {
+app.get('/userlist', async (req, res) => {   console.log('list session login '+ req.session.login);  console.log('list session pass '+ req.session.pass);
+ /* if (req.session.login) {
     try {
       res.render('userlist.html', { 
         users: await knex('users'),
-        current: req.session.user,
+        current: req.session.login,
       });
     } catch (err) {
       console.error(err);
@@ -220,9 +220,9 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
     //email:req.body.email,
   }).first();
   console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.email '+req.body.email);
-  console.log('u login '+user.login);
-  console.log('u pass '+user.pass);
-  console.log('u email '+user.email);
+  console.log('user login '+user.login);
+  console.log('user pass '+user.pass);
+  console.log('user email '+user.email);
   if (user) {
     req.session.login = user.login;  
     req.session.pass= user.pass; console.log('session login '+ req.session.login);  console.log('session pass '+ req.session.pass);
