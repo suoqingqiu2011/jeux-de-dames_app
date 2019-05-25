@@ -64,12 +64,12 @@ var wsserver = new ws.Server({
 // We define the WebSocket logic
   wsserver.on('connection', (wsconn,req) => {   //console.log('ws session login '+ req.session.login);  console.log('ws session pass '+ req.session.pass);
   console.log('Received new WS connection');
-  /*var myuser = new User(req.session.login,wsconn);
+  var myuser = new User(req.session.login,wsconn);
   connected_users[req.session.login] = myuser ;
   console.log("i'm0 "+req.session.login);
   console.log("i'm "+myuser);
-  console.log("i'm here  "+connected_users[req.session.login]);*/
-  let myuser = null;
+  console.log("i'm here  "+connected_users[req.session.login]);
+  //let myuser = null;
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
@@ -77,7 +77,7 @@ var wsserver = new ws.Server({
         case 'new_connection':
         const username= parsed.username;  console.log("username: "+username); 
             
-        connected_users[username] = myuser = new User(username, wsconn);
+        //connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
         wsserver.broadcastList();
         break;

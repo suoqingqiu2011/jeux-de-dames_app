@@ -5,6 +5,7 @@ const append = (node, type) => node.appendChild(document.createElement(type));
 
 // Create table from user list
   const createUserList = (users) => {
+    
   const table = document.createElement('table');
 
   const row = append(table, 'tr');
@@ -15,10 +16,7 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   for (var u of users) {
     const row = append(table, 'tr');
     append(row, 'td').textContent = u.login;
-    
-    if (!sessionStorage.username) {
-      sessionStorage.username = u.login;
-    } 
+        
     
     const button = append(append(row, 'th'), 'button');
     button.textContent = 'Challenge';
