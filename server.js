@@ -70,7 +70,7 @@ var wsserver = new ws.Server({
   //console.log("i'm0 "+this.login);
  // console.log("i'm "+myuser);
   //console.log("i'm here  "+connected_users[this.login]);
-  //let myuser = null;
+  let myuser = null;
   wsconn.on('message', (data) => {
       const parsed = JSON.parse(data);
         //console.log(parsed);
@@ -78,7 +78,7 @@ var wsserver = new ws.Server({
         case 'new_connection':
         var myuser = new User(this.login,wsconn);
         connected_users[this.login] = myuser ;
-        const username= parsed.username;  console.log("username: "+username); 
+        //const username= parsed.username;  console.log("username: "+username); 
             
         //connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
@@ -86,7 +86,7 @@ var wsserver = new ws.Server({
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.username];
+        const opponent = connected_users[parsed.login];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
