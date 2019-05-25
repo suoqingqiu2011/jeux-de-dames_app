@@ -1,5 +1,19 @@
-# Dames
+# Structure du projet 
+------------
+`server.js` : conntenir handler's définitions et sockets listeners et emiters 
 
+handlers dans server.js :  
+`/login` : permettre de entrer sur la page `/userlist` pour jouer le jeux 
+`/logout` : permettre de sortir du compte
+`/signin` : permettre de créer un utilisateur
+`/` : retourner à la page principale `/login`
+`/userlist` : retourner dans la list des utilisateurs et connecter des autres pour jouer le jeux
+
+`db_init.js` : Data base configuration
+
+**Dames**
+
+`game.js` :
 Nous avons fait ce jeux en fonction du **TD sur Puissance 4** (voir le lien <http://defeo.lu/aws/tutorials/tutorial2>).  
 Des pions sont distribués selon des différents valuations de `tableau[row][column]`. 
 Pour tout l'affichage de performance, nous récupérons des valeurs de `td.dataset.row` et `td.dataset.column` et implémenter ce que des pions vont réaliser des fonctionalités dans cette position.  
@@ -8,7 +22,7 @@ S'ils sont choisi, des pions normaux sont notés par **3** . Quand des joueurs o
 Si des pions dames sont choisis, ils sont changé par **6**.  
   
 **Rappels de fonctions de jeux dames**
-------------
+
 - `set(row,column,player)`: juste pour tester s'il donne un bon note sur `tableau[row][column]`
 - `render()`: créer un damier du jeux et contenir toutes les structures de performances , mais il ne fait que l'affichage statique. Si on veut voir des actions, ils sont être implémentés dans `play(row,column)`
 - `pre_mange_position(i,j,row,column,tdd,turn)`: prévoir des positions quand le pion va manger 
@@ -27,16 +41,7 @@ Si des pions dames sont choisis, ils sont changé par **6**.
 Pour vérifier l'état sur le `row` et le `column`, si on va aussi voir des états de ses voisins, `row+(-)i` et `column+(-)i` doivent bien respecter le limite de nombre des lignes et colonnes (`<=9`).
 
 
-`server.js` : conntenir handler's définitions et sockets listeners et emiters 
 
-handlers dans server.js :
-'/login' : permettre de entrer  Allows to check the user's credentials and logs him in to the game 
-'/logout' : Allows the logout of the user
-'/signup' : Allows to create a new user
-'/' : retourner à la page principale`/login`
-'/getConnectedUser' : Returns the list of connected users
-
-db_init.js : Data base configuration
 # User accounts
 
 Nous avons fait la partie d'affichage des userlist selon les références du lien <http://defeo.lu/aws/tutorials/accounts>.
