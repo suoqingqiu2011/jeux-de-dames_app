@@ -86,7 +86,7 @@ var wsserver = new ws.Server({
         break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[parsed.login];
+        const opponent = connected_users[parsed.username];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
@@ -157,7 +157,9 @@ app.get('/', function(request, response) {
   response.redirect('/login');
 });
 // gestionnire qui gere la liste des utilisateurs 
-app.get('/userlist', async (req, res) => {   console.log('list session login '+ req.session.login);  console.log('list session pass '+ req.session.pass);
+app.get('/userlist', async (req, res) => {   
+  console.log('list session login '+ req.session.login);  
+  console.log('list session pass '+ req.session.pass);
  /* if (req.session.login) {
     try {
       res.render('userlist.html', { 
