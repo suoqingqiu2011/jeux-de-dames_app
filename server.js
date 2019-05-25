@@ -75,7 +75,8 @@ var wsserver = new ws.Server({
         //console.log(parsed);
         switch (parsed.type) {
         case 'new_connection':
-        const username= parsed.username;  console.log("username: "+username);
+        const username= parsed.username;  console.log("username: "+username); 
+            
         connected_users[username] = myuser = new User(username, wsconn);
         // We notify each user
         wsserver.broadcastList();

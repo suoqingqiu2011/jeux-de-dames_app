@@ -39,12 +39,13 @@ const send = (ws, data) => ws.send(JSON.stringify(data));
 
 const ws = new WebSocket('wss://' + window.location.host)
 
-ws.addEventListener('open', function(e) {
+ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
    send(ws, { 
     type: 'new_connection', 
     username: sessionStorage.username,
   });
-
+ 
+  
   ws.addEventListener('message', function(e) {
     const parsed = JSON.parse(e.data);
     console.log(parsed);
