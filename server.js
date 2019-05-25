@@ -179,6 +179,9 @@ app.post('/signin', async (req, res) => {
     email: req.body.email,
     //color2: req.body.color2,
   };
+  console.log('d login '+data.login);
+  console.log('d pass '+data.pass);
+  console.log('d email '+data.email);
   try {
     if (data.login 
         && data.pass
@@ -215,9 +218,9 @@ app.post('/login', async (req, res) => {
     pass: req.body.pass,
     email:req.body.email,
   }).first();
-  console.log('login '+user.login);
-  console.log('pass '+user.pass);
-  console.log('email '+user.email);
+  console.log('u login '+user.login);
+  console.log('u pass '+user.pass);
+  console.log('u email '+user.email);
   if (user) {
     req.session.login = user.login;
     req.session.pass= user.pass;
