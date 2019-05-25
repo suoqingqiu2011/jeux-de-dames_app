@@ -7,6 +7,7 @@ var session = require('express-session');
 var User = require('./User').User;
 
 
+
 app.use(bodyP.urlencoded({ extended: false }));
 app.use(session({
     secret: '12345',
@@ -211,8 +212,9 @@ app.post('/signin', async (req, res) => {
 });
 
 // for the signin
-
-app.get('/login', (req, res) => { console.log('ici session login '+ req.session.login);  console.log('ici session pass '+ req.session.pass);
+app.get('/login', (req, res) => { 
+  console.log('ici session login '+ req.session.login); 
+  console.log('ici session pass '+ req.session.pass);
   if (req.session.login) {
     res.redirect('/userlist');
   } else {
