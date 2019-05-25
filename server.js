@@ -175,7 +175,7 @@ app.get('/signin', (req, res) => {
 app.post('/signin', async (req, res) => {
   var data = {
     login: req.body.login,
-    pass: req.body.password,
+    pass: req.body.pass,
     email: req.body.email,
     //color2: req.body.color2,
   };
@@ -212,13 +212,12 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   var user = await knex('users').where({
     login: req.body.login,
-    pass: req.body.password,
-    email: req.body.email,
+    pass: req.body.pass,
+    email:req
   }).first();
   if (user) {
     req.session.login = user.login;
-    req.session.pass = user.password;
-    req.session.email=user.email;
+    req.session.pass= user.pass;
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
