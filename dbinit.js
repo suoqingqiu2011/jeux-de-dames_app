@@ -3,6 +3,7 @@ var knex = require('knex')({
     connection: {
         filename: ".data/db.sqlite3"
     },
+    useNullAsDefault: true,
     debug: true,
 });
 

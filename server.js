@@ -218,6 +218,7 @@ app.post('/login', async (req, res) => {
   if (user) {
     req.session.login = user.login;
     req.session.pass = user.password;
+    req.session.email=user.email;
     res.redirect('/userlist');
   } else {
     res.render('login.html', { 
