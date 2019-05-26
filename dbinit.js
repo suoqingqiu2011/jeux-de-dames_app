@@ -20,6 +20,9 @@ async function init() {
   var cols = await knex('users').columnInfo();
   console.log('Columns:', cols);
   
+  await knex('users').insert({ login: 'foo', pass: 'foofoo', email: 'foo@gmail.com'});
+  await knex('users').insert({ login: 'bar', pass: 'barbar', email: 'bar@gmail.com' });
+  await knex('users').insert({ login: 'aaa', pass: 'aaaaaa', email: 'aaa@gmail.com' });
   
   var rows = await knex('users');
   console.log('Rows:', rows);

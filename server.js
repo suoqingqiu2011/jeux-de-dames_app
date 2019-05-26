@@ -1,4 +1,5 @@
 
+
 var express = require('express');
 require('express-async-errors');
 var app = express();
@@ -9,13 +10,7 @@ var User = require('./User').User;
 
 
 app.use(bodyP.urlencoded({ extended: false }));
-//************************************************************ j ai mis ça en commenatire **********************************
-/*app.use(session({
-    secret: '12345',
-    resave: false,
-    saveUninitialized: false,
-}));*/
-//***************************************************************************************************************************
+
 var nunjucks = require('nunjucks');
 nunjucks.configure('views', {
     express: app,
@@ -33,7 +28,7 @@ var knex = require('knex')({
 const http = require('http');
 const ws = require('ws');
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 const connected_users = {};
 
@@ -63,47 +58,37 @@ var wsserver = new ws.Server({
     },
 });
 
+// Function to broadcast the list of conneted users
+wsserver.broadcastList = () => {
+  wsserver.clients.forEach((client) => {
+    if (client.readyState === ws.OPEN) { console.log(connected_users);
+      client.send(JSON.stringify({
+          type: 'userlist',
+          // We must avoid calling JSON.stringify on the wsconn field
+          // of each user
+          userlist: Object.values(connected_users).map((u) => u.serialize()),
+        }));
+    }
+  });
+};
+
 // We define the WebSocket logic
-  wsserver.on('connection', (wsconn, request) => { 
-                                                
+wsserver.on('connection', (wsconn) => {
   console.log('Received new WS connection');
-                                             
-                                             
-  //console.log("i'm0 "+this.login);
- // console.log("i'm "+myuser);
-  //console.log("i'm here  "+connected_users[this.login]);
-  console.log('session '+request.session);
-  var myuser = null;
-  //***************************************************   j ai rajouter   ********************************************************
-        if(request.session.login)    
-          {
-            myuser = new User(request.session.login,wsconn);
-            connected_users[request.session.login] = myuser ;
-            wsconn.send(JSON.stringify({
-                  type: 'new_connection',
-                  user: request.session.login
-                }));
-            wsserver.broadcastList();
-          }
-//**********************************************************************************************************************************
+  let myuser = null;
+  
   wsconn.on('message', (data) => {
-      const parsed = JSON.parse(data);
-        //console.log(parsed);
-        switch (parsed.type) {
-//*************************************************** j ai mis ça aussi en commentaire ********************************************************
-        /*case 'new_connection':
-        var myuser = new User(request.session.login,wsconn);
-        connected_users[request.session.login] = myuser ;
-        //const username= parsed.username;  console.log("username: "+username); 
-            
-        //connected_users[username] = myuser = new User(username, wsconn);
-        // We notify each user
-        wsserver.broadcastList();
-        break;*/
-//*********************************************************************************************************************************************
+    const parsed = JSON.parse(data);
+    console.log(parsed);   
+    switch (parsed.type) {  
+      case 'new_connection':
+        const name = parsed.username;    console.log('name hereeeee');  console.log('parsed.username '+parsed.username);
+        connected_users[name] = myuser = new User(name, wsconn);   
+        wsserver.broadcastList();  console.log('name  '+name);
+        break;
       case 'challenge':
         // We check that the invitation is valid
-        const opponent = connected_users[this.login];
+        const opponent = connected_users[parsed.username];
         if (opponent && myuser.invite(opponent)) {
           // We notify each user
           opponent.wsconn.send(JSON.stringify({
@@ -143,22 +128,6 @@ var wsserver = new ws.Server({
     }  
   });
   
-    // Function to broadcast the list of conneted users
-wsserver.broadcastList = () => {
-  //console.log('ça marche le broadcast');
-  wsserver.clients.forEach((client) => {
-    if (client.readyState === ws.OPEN) {
-      client.send(JSON.stringify({
-          type: 'userlist',
-          // We must avoid calling JSON.stringify on the wsconn field
-          // of each user
-          userlist: Object.values(connected_users).map((u) => u.serialize()),
-        }));
-    }
-    
-  });
-};
-
   wsconn.on('close', () => {
     if (myuser !== null) {
       delete connected_users[myuser.login];
@@ -166,6 +135,9 @@ wsserver.broadcastList = () => {
     }
   });
 });
+
+
+  
 
 app.use('/', express.static('public'));
 
@@ -177,7 +149,7 @@ app.get('/', function(request, response) {
 app.get('/userlist', async (req, res) => {   
   console.log('list session login '+ req.session.login);  
   console.log('list session pass '+ req.session.pass);
- /* if (req.session.login) {
+  if (req.session.login) {
     try {
       res.render('userlist.html', { 
         users: await knex('users'),
@@ -189,8 +161,8 @@ app.get('/userlist', async (req, res) => {
     }
   } else {
     res.redirect('/login');
-  }*/
-  res.render('userlist.html');
+  }
+  //res.render('userlist.html');
 });
 
 // pour l'inscription
@@ -220,6 +192,7 @@ app.post('/signin', async (req, res) => {
   } catch (err) {
     if (err.code == 'SQLITE_CONSTRAINT') {
       res.render('signin.html', { data: data, message: 'vous etes inscrit' });
+      
     } else {
       console.error(err);
       res.status(500).send('Error');
@@ -254,11 +227,6 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
       message: 'Mot de passe ou login incorrect',
     });
   }
-});
-
-// for the games 
-app.get('/jeux', (req, res) => {
-  res.render('index.html');
 });
 
 // for the logout 
