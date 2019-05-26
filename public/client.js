@@ -53,13 +53,13 @@ ws.addEventListener('open', function(e) {
       case 'challenge':
         status = 'playing'
         mainDiv.innerHTML = '';
-        append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
+        append(mainDiv, 'div').textContent = "Vous êtes en train de jouer avec ' ${parsed.username} '.";
         const button = append(mainDiv, 'button');
-        button.textContent = 'Quit';
+        button.textContent = 'Quitter cette salle du jeux.';
         button.className = 'quit';
         break;
       case 'challenge_rejected':
-        alert("The invite was rejected. Because it's yourself. ");
+        alert("L'invite est rejeté. Parce que c'est vous-même. ");
         break;
       case 'quit':
         status = 'available';
@@ -68,7 +68,7 @@ ws.addEventListener('open', function(e) {
         console.error(parsed.message);
         break;
       default:
-        console.error('Bad message', parsed);
+        console.error('Mauvais message', parsed);
     }
   });
   
