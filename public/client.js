@@ -53,7 +53,7 @@ ws.addEventListener('open', function(e) {
       case 'challenge':
         status = 'playing'
         mainDiv.innerHTML = '';
-        append(mainDiv, 'div').textContent = "Vous êtes en train de jouer avec ' ${parsed.username} '.";
+        append(mainDiv, 'div').textContent = "Vous êtes en train de jouer avec  ${parsed.username} .";
         const button = append(mainDiv, 'button');
         button.textContent = 'Quitter cette salle du jeux.';
         button.className = 'quit';

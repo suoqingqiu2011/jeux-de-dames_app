@@ -12,10 +12,8 @@
     <div>{{ message }}</div>
     
     <script type="text/javascript">      
-      function load() {          
-        if(localStorage.getItem("username")==null||localStorage.getItem("username")=='undefined'){
-          localStorage.setItem('username',document.getElementById('log').value);
-        }
+      function load() {           
+          localStorage.setItem('username',document.getElementById('log').value);    
       }     
     </script>
 {% endblock %}
