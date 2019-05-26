@@ -7,8 +7,15 @@
 <form id="form1" method="POST">
   <input type="text" id="log" name="login" placeholder="login" value="{{ data.login }}">
   <input type="password" id="pass" name="pass" placeholder="password">
-  <input type="submit" id="but" value="login">
+  <input type="submit" id="but" value="login"  onclick=" load() ">
 </form>
-
-<div>{{ message }}</div>
+    <div>{{ message }}</div>
+    
+    <script type="text/javascript">      
+      function load() {          
+        if(localStorage.getItem("username")==null||localStorage.getItem("username")=='undefined'){
+          localStorage.setItem('username',document.getElementById('log').value);
+        }
+      }     
+    </script>
 {% endblock %}

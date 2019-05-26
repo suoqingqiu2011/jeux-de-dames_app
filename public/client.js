@@ -1,5 +1,3 @@
-
-var user = null;
 const mainDiv = document.getElementById('main');
 const append = (node, type) => node.appendChild(document.createElement(type));
 
@@ -7,7 +5,7 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   const createUserList = (users) => {
   
   const table = document.createElement('table');
-
+  table.id="tab2";
   const row = append(table, 'tr');
   const header = append(row, 'th');
   header.textContent = 'username';
@@ -16,14 +14,13 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   for (var u of users) {
     const row = append(table, 'tr');
     append(row, 'td').textContent = u.login;
-        
-    
+   
     const button = append(append(row, 'th'), 'button');
     button.textContent = 'Challenge';
     button.className = 'challenge';
     button.dataset.username = u.login;
-//************************************************* j ai modifier **********************************
-    if (u.login == user){button.disabled = true;}
+     if (u.state != 'AVAILABLE' || u.login == localStorage.username)
+      button.disabled = true;
   }
   
   return table
@@ -36,30 +33,19 @@ let status = 'available';
 const send = (ws, data) => ws.send(JSON.stringify(data));
 
 const ws = new WebSocket('wss://' + window.location.host)
-//*************************************************** j ai mis ça aussi en commentaire ********************************************************
 
-/*ws.addEventListener('open', function(e) {  console.log("sessionStorage "+sessionStorage.username);
-   send(ws, { 
+ws.addEventListener('open', function(e) {  
+  send(ws, { 
     type: 'new_connection', 
-    //username: tho,
-  });*/
-//********************************************************************************************************************************************* 
-  
-  ws.addEventListener('message', function(e) {
+    username: localStorage.getItem("username"),
+  });
+ localStorage.removeItem('username');
+  ws.addEventListener('message', function(e) {  
     const parsed = JSON.parse(e.data);
-    console.log(parsed);
+    console.log(parsed);  
     switch (parsed.type) {
-        
-//***************************************************   j ai rajouter   ********************************************************
-      case 'new_connection':
-        if(!user)
-        {
-          user = parsed.user;
-        }
-//*******************************************************************************************************************************        
-        
-      case 'userlist':
-        if (status == 'available') {
+      case 'userlist':    //alert("i am ");
+        if (status == 'available') { 
           mainDiv.innerHTML = '';
           mainDiv.appendChild(createUserList(parsed.userlist));
         }
@@ -67,13 +53,13 @@ const ws = new WebSocket('wss://' + window.location.host)
       case 'challenge':
         status = 'playing'
         mainDiv.innerHTML = '';
-        //append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
-        //const button = append(mainDiv, 'button');
-        //button.textContent = 'Quit';
-        //button.className = 'quit'; 
+        append(mainDiv, 'div').textContent = `You are playing with ${parsed.username}`;
+        const button = append(mainDiv, 'button');
+        button.textContent = 'Quit';
+        button.className = 'quit';
         break;
       case 'challenge_rejected':
-        alert('The invite was rejected');
+        alert("The invite was rejected. Because it's yourself. ");
         break;
       case 'quit':
         status = 'available';
@@ -82,7 +68,7 @@ const ws = new WebSocket('wss://' + window.location.host)
         console.error(parsed.message);
         break;
       default:
-        console.error('Badxxxxxxxxxx', parsed);
+        console.error('Bad message', parsed);
     }
   });
   
@@ -98,3 +84,4 @@ const ws = new WebSocket('wss://' + window.location.host)
       send(ws, { type: 'quit' });
     }
   });
+});
