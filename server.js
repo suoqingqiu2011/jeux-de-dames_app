@@ -229,6 +229,10 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
   }
 });
 
+app.get('/jeux', (req, res) => {
+  res.render('index.html');
+});
+
 // for the logout 
 app.get('/logout', (req, res) => {
   req.session.login = null;
