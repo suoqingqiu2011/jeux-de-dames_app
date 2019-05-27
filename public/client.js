@@ -1,4 +1,8 @@
+
+
 const mainDiv = document.getElementById('main');
+const jeuxDiv = document.getElementById('jeuxdames');
+
 const append = (node, type) => node.appendChild(document.createElement(type));
 
 // Create table from user list
@@ -23,7 +27,19 @@ const append = (node, type) => node.appendChild(document.createElement(type));
       button.disabled = true;
   }
   
-  return table
+  return table;
+}
+  
+// Create table from user list
+  const createDamier = () => {
+  
+  const iframe = document.createElement('iframe');
+  iframe.id="ifram";
+  iframe.src="/jeux";
+  iframe.width="100%";
+  iframe.height="800px";
+  iframe.style="margin-top: 20px;";
+  return iframe;
 }
 
 // A status to know if we are playing or not
@@ -52,11 +68,13 @@ ws.addEventListener('open', function(e) {
         break;
       case 'challenge':
         status = 'playing'
-        mainDiv.innerHTML = '';
-        append(mainDiv, 'div').textContent = `Vous êtes en train de jouer avec ' ${parsed.username} ' .`;
+        mainDiv.innerHTML = '';      
+        append(mainDiv, 'div').textContent = `Vous êtes en train de jouer avec ' ${parsed.username} '.`;
         const button = append(mainDiv, 'button');
         button.textContent = 'Quitter cette salle du jeux.';
         button.className = 'quit';
+        
+        mainDiv.appendChild(createDamier());
         break;
       case 'challenge_rejected':
         alert("L'invite est rejeté. Parce que c'est vous-même. ");
@@ -69,7 +87,7 @@ ws.addEventListener('open', function(e) {
         console.error(parsed.message);
         break;
       default:
-        console.error('Mauvais message', parsed);
+        console.error('Mauvais messages', parsed);
     }
   });
   
@@ -82,6 +100,7 @@ ws.addEventListener('open', function(e) {
         username: e.target.dataset.username,
       });
     } else if (e.target.className == 'quit') {
+      alert("Vous sera perdu.");
       send(ws, { type: 'quit' });
     }
   });

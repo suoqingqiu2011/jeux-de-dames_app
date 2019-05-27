@@ -34,8 +34,8 @@ menu{
   width: 100px;
   height: 35px;
   margin: 10px auto;
-  margin-top:80px;
-  padding-left: 350px;
+  margin-top:20px;
+  padding-left: 500px;
   
 }
 
@@ -46,7 +46,7 @@ menu a {
 
 #form1 {
   margin: 25px auto;
-  margin-top: 0px;
+  margin-top: 80px;
   background-color: cyan;
   display: inline-block;
   width: 560px;
@@ -56,7 +56,7 @@ menu a {
 }
 #form2{
   margin: 25px auto;
-  margin-top: 0px;
+  margin-top: 80px;
   background-color: cyan;
   display: inline-block;
   width: 560px;
@@ -99,15 +99,27 @@ menu a {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
 }
+button{
+  color:white;
+  border-radius: 3px;
+  background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbut.png?1558682746568') no-repeat scroll center;
+  background-size:cover;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
 
-#but:hover {
+#but:hover , button:hover{
   background: url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fbutcover.png?1558682989172') no-repeat scroll center;
   background-size:cover;
 }
 
-#but:active {
+#but:active , button:active{
   box-shadow: none;
 }
+
 #c2{
   width: 60px;
   margin: 0 26px 0 26px;
