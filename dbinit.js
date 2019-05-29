@@ -14,7 +14,7 @@ async function init() {
     table.string('login').primary();
     table.string('pass').notNullable();
     table.string('email').notNullable();
-    //table.string('color2', 15);
+    
   });
   
   var cols = await knex('users').columnInfo();

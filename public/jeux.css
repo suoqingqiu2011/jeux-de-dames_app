@@ -12,6 +12,10 @@ body {
 
 #vide{
   background: white url('https://cdn.glitch.com/9893d270-7092-455c-a88d-67b1ad9a4b65%2Fback6.jpg?1558690302151') repeat scroll center; 
+  height :630px;
+  width :565px;
+  border :3px solid Maroon ;
+  margin:0 auto;
 }
 
 table{
@@ -88,4 +92,13 @@ img{
   width: 19%;
   height: 100%;
   vertical-align: middle;
+}
+
+#alarmetext{
+  position:relative; 
+  font-weight:bold; 
+  color: white;
+  height :25px;
+  width :565px;
+  margin :6px auto;
 }

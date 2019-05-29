@@ -1,11 +1,15 @@
 
+import Gamedames from './game2.js'
+
+var damesgame = new Gamedames('bin',1);
 
 const mainDiv = document.getElementById('main');
-const jeuxDiv = document.getElementById('jeuxdames');
 
+//definir un node ajoute
 const append = (node, type) => node.appendChild(document.createElement(type));
 
-// Create table from user list
+
+// Creer tab de users a partir de base de donnee
   const createUserList = (users) => {
   
   const table = document.createElement('table');
@@ -30,7 +34,7 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   return table;
 }
   
-// Create table from user list
+// Creer un iframe pour implanter un damier
   const createDamier = () => {
   
   const iframe = document.createElement('iframe');
@@ -39,10 +43,11 @@ const append = (node, type) => node.appendChild(document.createElement(type));
   iframe.width="100%";
   iframe.height="800px";
   iframe.style="margin-top: 20px;";
+  
   return iframe;
 }
 
-// A status to know if we are playing or not
+// voir si il est dans jeux ou disponible
 let status = 'available';
 
 // envoie des données a travers websocket poour un format json
@@ -56,29 +61,56 @@ ws.addEventListener('open', function(e) {
     username: localStorage.getItem("username"),
   });
  localStorage.removeItem('username');
+  
   ws.addEventListener('message', function(e) {  
     const parsed = JSON.parse(e.data);
     console.log(parsed);  
+   
     switch (parsed.type) {
+      //afficher la list de users
       case 'userlist':    //alert("i am ");
-        if (status == 'available') { 
-          mainDiv.innerHTML = '';
-          mainDiv.appendChild(createUserList(parsed.userlist));
+        if (status == 'available') {  
+          //mainDiv.document.write('');
+          if(mainDiv!=null){
+            mainDiv.innerHTML='';
+            mainDiv.appendChild(createUserList(parsed.userlist));
+          }
+          
         }
         break;
+      // vouloir combattre au autre
       case 'challenge':
-        status = 'playing'
-        mainDiv.innerHTML = '';      
-        append(mainDiv, 'div').textContent = `Vous êtes en train de jouer avec ' ${parsed.username} '.`;
-        const button = append(mainDiv, 'button');
-        button.textContent = 'Quitter cette salle du jeux.';
-        button.className = 'quit';
+        status = 'playing' ;
+       // mainDiv.document.write('');
+        if(mainDiv!=null){
+          mainDiv.innerHTML='';
+          append(mainDiv, 'div').textContent = `Vous êtes en train de jouer avec ' ${parsed.username} '.`;
+          const button = append(mainDiv, 'button');
+          button.textContent = 'Quitter cette salle du jeux.';
+          button.className = 'quit';
+
+          mainDiv.appendChild(createDamier());  
+          
+        }
         
-        mainDiv.appendChild(createDamier());
         break;
+      //ne pouvoir pas choisir moi_meme
       case 'challenge_rejected':
         alert("L'invite est rejeté. Parce que c'est vous-même. ");
         break;
+ ///////////////////////////////////////////////////////////////       
+      //passer tous les positions a partir de fichier JSON
+      case "chessBoard":         
+          damesgame.tableau = parsed.chessBoard;
+          damesgame.playerID = parsed.username;
+          damesgame.turn = parsed.myturn;
+          damesgame.pieceRow= parsed.row;
+          damesgame.pieceColumn= parsed.column;
+         // damesgame.render();
+        
+          break;
+///////////////////////////////////////////////////////////////////
+      // quitter le jeux
       case 'quit':
         status = 'available';
         alert("Vous êtes quitté(e) le jeux.");
@@ -91,17 +123,38 @@ ws.addEventListener('open', function(e) {
     }
   });
   
-  // We attach one global event listener on the div to capture 
-  // clicks on all "Challenge" buttons
-  mainDiv.addEventListener('click', (e) => {
-    if (e.target.className == 'challenge') {
-      send(ws, {
-        type: 'challenge',
-        username: e.target.dataset.username,
-      });
-    } else if (e.target.className == 'quit') {
-      alert("Vous sera perdu.");
-      send(ws, { type: 'quit' });
-    }
-  });
+  // cliquer le button "Challenge" ,passer JSON au serveur
+  if(mainDiv!=null){
+    mainDiv.addEventListener('click', (e) => { 
+      if (e.target.className == 'challenge') {
+        send(ws, {
+          type: 'challenge',
+          username: e.target.dataset.username,
+        });
+      } else if (e.target.className == 'quit') {
+        alert("Vous sera perdu.");
+        send(ws, { type: 'quit' });
+      }
+    });
+  }
+   // poser des pions sur le damier ,passer JSON au serveur
+  const damesDiv = document.querySelector('#plateau');   
+  if(damesDiv!=null){     
+    damesDiv.addEventListener('click', (e) => { 
+      if (e.target.className == 'player1'||e.target.className == 'player2') {   //alert('e.target.dataset.myturn '+e.target.dataset.myturn+' e.target.dataset.chessBoard '+e.target.dataset.chessBoard);
+                                                       //console.log('e.target.dataset '+e.target.dataset); alert('e.target.dataset.row '+e.target.dataset.row+' e.target.dataset.column '+e.target.dataset.column);
+        send(ws, {
+          type: 'chessBoard',
+          myturn:  e.target.dataset.myturn,
+          chessBoard: e.target.dataset.chessBoard,
+          row: e.target.dataset.row,
+          column: e.target.dataset.column,
+          
+        });
+      } else {
+        alert("Vous doivez cliquer sur le damier."); 
+      }
+    });
+  }
+  
 });

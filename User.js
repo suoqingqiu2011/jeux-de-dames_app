@@ -1,8 +1,10 @@
 class User {
+  
   constructor(login, wsconn) {
     this.login = login;
     this.wsconn = wsconn;
     this.state = 'AVAILABLE';
+    
   }
   
   serialize() {
@@ -21,7 +23,7 @@ class User {
       return null;
     }
   }
-  
+
   quit() {
     if (this.state == 'PLAYING' && this.game) {
       return this.game.quit();
@@ -29,6 +31,8 @@ class User {
       return false;
     }
   }
+  
+  
 }
 
 class Game {
@@ -37,11 +41,29 @@ class Game {
     this.player2 = p2;
   }
   
+  //////////////////////////////////////////////////  
+  
+/*  playGmes(){    
+    this.wsconn.on('data', (row,column) => {
+        this.play(this.login,row,column,this.login.turn);
+    });
+  }
+  
+  play(player,row,column,turn){
+    
+    this.player1.turn = ~~(Math.random() * 2) === 0 ? 1 : 2;
+    this.player2.turn = this.player1.turn === 1 ? 2 : 1;
+  }*/
+  
+////////////////////////////////////////////////////////  
+  
   quit() {
     this.player2.game = this.player1.game = null;
     this.player2.state = this.player1.state = 'AVAILABLE';
     return this;
   }
+  
+  
 }
 
 exports.User = User;

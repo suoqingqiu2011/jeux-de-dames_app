@@ -32,7 +32,7 @@ const ws = require('ws');
 
 const connected_users = {};
 
-// We attach express and ws to the same HTTP server
+// express et ws sont au même HTTP server
 const server = http.createServer(app);
 /*const wsserver = new ws.Server({ 
   server: server,
@@ -43,6 +43,8 @@ var sess_storage = session({
     saveUninitialized: false,
 });
 app.use(sess_storage);
+
+//vouloir connecter au serveur
 var wsserver = new ws.Server({ 
     server: server,
 
@@ -51,14 +53,14 @@ var wsserver = new ws.Server({
             if (err) {
                 next(false, 500, "Error: " + err);
             } else {
-                // Pass false if you want to refuse the connection
+                // Passer false si tu veut refuser le connection 
                 next(true);
             }
         });
     },
 });
 
-// Function to broadcast the list of conneted users
+//  la fonction broadcast pour afficher la list de users connectes
 wsserver.broadcastList = () => {
   wsserver.clients.forEach((client) => {
     if (client.readyState === ws.OPEN) { console.log(connected_users);
@@ -72,7 +74,7 @@ wsserver.broadcastList = () => {
   });
 };
 
-// We define the WebSocket logic
+// definir le WebSocket : recuperer le JSON au serveur et envoyer a tous les clients 
 wsserver.on('connection', (wsconn) => {
   console.log('Received new WS connection');
   let myuser = null;
@@ -83,14 +85,15 @@ wsserver.on('connection', (wsconn) => {
     switch (parsed.type) {  
       case 'new_connection':
         const name = parsed.username;    console.log('name hereeeee');  console.log('parsed.username '+parsed.username);
-        connected_users[name] = myuser = new User(name, wsconn);   
+        connected_users[name] = myuser = new User(name, wsconn );   
         wsserver.broadcastList();  console.log('name  '+name);
         break;
       case 'challenge':
-        // We check that the invitation is valid
+        
         const opponent = connected_users[parsed.username];
+        // l'invite est valide ou non
         if (opponent && myuser.invite(opponent)) {
-          // We notify each user
+          //passer des msg a tous les cotes de clients
           opponent.wsconn.send(JSON.stringify({
             type: 'challenge',
             username: myuser.login,
@@ -99,15 +102,42 @@ wsserver.on('connection', (wsconn) => {
             type: 'challenge',
             username: opponent.login,
           }));
-          wsserver.broadcastList();
+          //wsserver.broadcastList();
+          
         } else {
-          // We send back an error
+          // client ne peut pas choisir lui_meme 
           wsconn.send(JSON.stringify({
             type: 'challenge_rejected',
             username: parsed.username,
           }));
         }
         break;
+      case 'chessBoard':
+        const opponentt = connected_users[parsed.username];
+        // l'invite est valide ou non
+        if (opponentt && myuser.invite(opponent)) {
+          //passer des msg a tous les cotes de clients
+          opponentt.wsconn.send(JSON.stringify({
+            type: 'chessBoard',
+            username: myuser.login,
+            myturn:  myuser.myturn,
+            chessBoard: myuser.chessBoard,
+            row:myuser.row,
+            column:myuser.column,
+          }));
+          wsconn.send(JSON.stringify({
+            type: 'chessBoard',
+            username: opponentt.login,
+            myturn:  opponentt.myturn,
+            chessBoard: opponentt.chessBoard,
+            row:opponentt.row,
+            column:opponentt.column,
+          }));
+          //wsserver.broadcastList();    
+        }
+        
+        break;
+      // quitter le jeux
       case 'quit':
         const game = myuser.quit();
         if (game) {
@@ -115,8 +145,8 @@ wsserver.on('connection', (wsconn) => {
             game[p].wsconn.send(JSON.stringify({
               type: 'quit',
             }));
-          }
-          wsserver.broadcastList();
+          }      
+          wsserver.broadcastList(); 
         } else {
           wsconn.send(JSON.stringify({
             type: 'error',
@@ -127,7 +157,7 @@ wsserver.on('connection', (wsconn) => {
         console.error('Bad message', parsed);
     }  
   });
-  
+  //websocket est coupe
   wsconn.on('close', () => {
     if (myuser !== null) {
       delete connected_users[myuser.login];
@@ -136,15 +166,16 @@ wsserver.on('connection', (wsconn) => {
   });
 });
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
   
 
 app.use('/', express.static('public'));
 
+//retouner a la page principale pour login
 app.get('/', function(request, response) {
-  //response.render('index.html');
   response.redirect('/login');
 });
+
 // gestionnire qui gere la liste des utilisateurs 
 app.get('/userlist', async (req, res) => {   
   console.log('list session login '+ req.session.login);  
@@ -162,7 +193,6 @@ app.get('/userlist', async (req, res) => {
   } else {
     res.redirect('/login');
   }
-  //res.render('userlist.html');
 });
 
 // pour l'inscription
@@ -170,16 +200,14 @@ app.get('/signin', (req, res) => {
   res.render('signin.html');
 });
 
+//inscrire des donnees
 app.post('/signin', async (req, res) => {
   var data = {
     login: req.body.login,
     pass: req.body.pass,
     email: req.body.email,
-    //color2: req.body.color2,
   };
-  //console.log('d login '+data.login);
-  //console.log('d pass '+data.pass);
-  //console.log('d email '+data.email);
+ 
   try {
     if (data.login 
         && data.pass
@@ -200,7 +228,7 @@ app.post('/signin', async (req, res) => {
   }
 });
 
-// for the signin
+// verifier si on affichier userlist
 app.get('/login', (req, res) => { 
   console.log('ici session login '+ req.session.login); 
   console.log('ici session pass '+ req.session.pass);
@@ -210,12 +238,11 @@ app.get('/login', (req, res) => {
     res.render('login.html');
   }
 });
-
+//login avec des bons usename et password
 app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.login); console.log('req.body.passs '+req.body.pass); console.log('req.body.login '+req.body.email);
   var user = await knex('users').where({
     login: req.body.login,
     pass: req.body.pass,
-    //email:req.body.email,
   }).first();
   if (user) {
     req.session.login = user.login;  
@@ -228,15 +255,20 @@ app.post('/login', async (req, res) => {console.log('req.body.login '+req.body.l
     });
   }
 });
-
+//charger le jeux
 app.get('/jeux', (req, res) => {
-  res.render('index.html');
+  if (req.session.login) {
+    res.render('index.html');
+  }else{
+    res.redirect('/login');
+  }
 });
 
-// for the logout 
+// logout du jeux
 app.get('/logout', (req, res) => {
   req.session.login = null;
   res.redirect('/login');
 });
-// Watch out for this: app.listen would break ws!
+
+// si app.listen est coupe, me montre des msg 
 server.listen(process.env.PORT);
