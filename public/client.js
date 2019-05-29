@@ -1,7 +1,7 @@
 
 import Gamedames from './game2.js'
 
-var damesgame = new Gamedames('bin',1);
+var damesgame = new Gamedames('player1',1) ;
 
 const mainDiv = document.getElementById('main');
 
@@ -27,8 +27,10 @@ const append = (node, type) => node.appendChild(document.createElement(type));
     button.textContent = 'Challenge';
     button.className = 'challenge';
     button.dataset.username = u.login;
-     if (u.state != 'AVAILABLE' || u.login == localStorage.username)
+    
+     if (u.state != 'AVAILABLE' || u.login == localStorage.getItem('username')){
       button.disabled = true;
+     }
   }
   
   return table;
@@ -65,7 +67,7 @@ ws.addEventListener('open', function(e) {
   ws.addEventListener('message', function(e) {  
     const parsed = JSON.parse(e.data);
     console.log(parsed);  
-   
+   console.log('parsed.lastchessBoard: '+parsed.lastchessBoard+' parsed.row :'+parsed.row+' parsed.column: '+parsed.column);
     switch (parsed.type) {
       //afficher la list de users
       case 'userlist':    //alert("i am ");
@@ -100,10 +102,11 @@ ws.addEventListener('open', function(e) {
         break;
  ///////////////////////////////////////////////////////////////       
       //passer tous les positions a partir de fichier JSON
-      case "chessBoard":         
-          damesgame.tableau = parsed.chessBoard;
-          damesgame.playerID = parsed.username;
-          damesgame.turn = parsed.myturn;
+      case "chessBoard":          
+        
+          //damesgame.tableau = parsed.lastchessBoard;
+          damesgame.playerID = parsed.classname;
+          //damesgame.turn = parsed.myturn;
           damesgame.pieceRow= parsed.row;
           damesgame.pieceColumn= parsed.column;
          // damesgame.render();
@@ -123,10 +126,12 @@ ws.addEventListener('open', function(e) {
     }
   });
   
+  var tmp_usename=null;
   // cliquer le button "Challenge" ,passer JSON au serveur
   if(mainDiv!=null){
     mainDiv.addEventListener('click', (e) => { 
-      if (e.target.className == 'challenge') {
+      if (e.target.className == 'challenge') {    
+        tmp_usename=e.target.dataset.username;
         send(ws, {
           type: 'challenge',
           username: e.target.dataset.username,
@@ -141,12 +146,14 @@ ws.addEventListener('open', function(e) {
   const damesDiv = document.querySelector('#plateau');   
   if(damesDiv!=null){     
     damesDiv.addEventListener('click', (e) => { 
-      if (e.target.className == 'player1'||e.target.className == 'player2') {   //alert('e.target.dataset.myturn '+e.target.dataset.myturn+' e.target.dataset.chessBoard '+e.target.dataset.chessBoard);
-                                                       //console.log('e.target.dataset '+e.target.dataset); alert('e.target.dataset.row '+e.target.dataset.row+' e.target.dataset.column '+e.target.dataset.column);
+      if (e.target.className == 'player1'||e.target.className == 'player2') {   //alert('e.target.className: '+e.target.className+' e.target.dataset.lastchessBoard: '+e.target.dataset.lastchessBoard);
+               alert('tmp_usename: '+tmp_usename);                                        //alert('e.target.dataset.row: '+e.target.dataset.row+' e.target.dataset.column: '+e.target.dataset.column);
         send(ws, {
           type: 'chessBoard',
-          myturn:  e.target.dataset.myturn,
-          chessBoard: e.target.dataset.chessBoard,
+          //myturn:  e.target.dataset.myturn,
+          username: tmp_usename,
+          classname: e.target.className,
+          lastchessBoard: e.target.dataset.lastchessBoard,
           row: e.target.dataset.row,
           column: e.target.dataset.column,
           
