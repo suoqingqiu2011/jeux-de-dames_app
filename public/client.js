@@ -98,7 +98,7 @@ ws.addEventListener('open', function(e) {
         break;
       //ne pouvoir pas choisir moi_meme
       case 'challenge_rejected':
-        alert("L'invite est rejeté. Parce que c'est vous-même. ");
+        alert("L'invite n'est pas validé. Car c'est vou-même.  ");
         break;
  ///////////////////////////////////////////////////////////////       
       //passer tous les positions a partir de fichier JSON
