@@ -333,6 +333,7 @@ render(){
   
   var but = document.createElement('button');
   but.id = "bt";
+  but.className = "btReset";
   but.innerHTML="reset";
   if(divv!=null){
     divv.appendChild(but);
@@ -340,8 +341,8 @@ render(){
   but.style.height = '30px';
   but.style.width ='80px';
   but.style.margin = '5px';
-  but.addEventListener('click', function(e) { this.reset();});
-  
+
+  but.addEventListener('click', (event) => this.reset());
   var alarmetext = document.querySelector('#alarmetext');
   
   if(divv!=null){
@@ -372,7 +373,7 @@ handle_click(event){
         
        this.removeEle();
        this.render();
-      }else{
+      }else if((!(row&&column))&&event.target.className != 'btReset'){
         var color="";
            if(this.turn==1){
              color="Black";
