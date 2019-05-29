@@ -6,7 +6,7 @@ var app = express();
 var bodyP = require('body-parser');
 var session = require('express-session');
 var User = require('./User').User;
-
+var Userclass = require('./User').Userclass;
 
 
 app.use(bodyP.urlencoded({ extended: false }));
@@ -31,6 +31,7 @@ const ws = require('ws');
 //app.use(express.static('public'));
 
 const connected_users = {};
+const connected_usersclassname = {};
 
 // express et ws sont au même HTTP server
 const server = http.createServer(app);
@@ -78,7 +79,7 @@ wsserver.broadcastList = () => {
 wsserver.on('connection', (wsconn) => {
   console.log('Received new WS connection');
   let myuser = null;
-  
+  let opponent = null;
   wsconn.on('message', (data) => {
     const parsed = JSON.parse(data);
     console.log(parsed);   
@@ -90,7 +91,7 @@ wsserver.on('connection', (wsconn) => {
         break;
       case 'challenge':
         
-        const opponent = connected_users[parsed.username];
+         opponent = connected_users[parsed.username];
         // l'invite est valide ou non
         if (opponent && myuser.invite(opponent)) {
           //passer des msg a tous les cotes de clients
@@ -113,25 +114,33 @@ wsserver.on('connection', (wsconn) => {
         }
         break;
       case 'chessBoard':
-        const opponentt = connected_users[parsed.username];
-        // l'invite est valide ou non
-        if (opponentt && myuser.invite(opponent)) {
+       const classname = parsed.classname;
+        /*var opponentt_classname = null;
+        if(classname=='player1'||classname=='player2'){
+          connected_usersclassname[classname] = myuser_classname = classname;
+          opponentt_classname = connected_usersclassname[classname=='player1'?'player2':'player1'];  
+        }
+        */
+        opponent = connected_users[parsed.username];  
+        console.log('classname: '+classname+' opponent'+opponent);
+        // l'invite est valide ou non                     
+        if(opponent){
           //passer des msg a tous les cotes de clients
-          opponentt.wsconn.send(JSON.stringify({
+          opponent.wsconn.send(JSON.stringify({
             type: 'chessBoard',
-            username: myuser.login,
-            myturn:  myuser.myturn,
-            chessBoard: myuser.chessBoard,
+            classname: myuser.classname,
+           // myturn:  myuser.myturn,
+            lastchessBoard: myuser.lastchessBoard,
             row:myuser.row,
             column:myuser.column,
           }));
           wsconn.send(JSON.stringify({
             type: 'chessBoard',
-            username: opponentt.login,
-            myturn:  opponentt.myturn,
-            chessBoard: opponentt.chessBoard,
-            row:opponentt.row,
-            column:opponentt.column,
+            classname: opponent.classname,
+           // myturn:  opponentt.myturn,
+            lastchessBoard: opponent.lastchessBoard,
+            row:opponent.row,
+            column:opponent.column,
           }));
           //wsserver.broadcastList();    
         }
@@ -230,8 +239,8 @@ app.post('/signin', async (req, res) => {
 
 // verifier si on affichier userlist
 app.get('/login', (req, res) => { 
-  console.log('ici session login '+ req.session.login); 
-  console.log('ici session pass '+ req.session.pass);
+  /*console.log('ici session login '+ req.session.login); 
+  console.log('ici session pass '+ req.session.pass);*/
   if (req.session.login) {
     res.redirect('/userlist');
   } else {

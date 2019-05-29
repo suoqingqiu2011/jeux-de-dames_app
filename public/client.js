@@ -147,7 +147,7 @@ ws.addEventListener('open', function(e) {
   if(damesDiv!=null){     
     damesDiv.addEventListener('click', (e) => { 
       if (e.target.className == 'player1'||e.target.className == 'player2') {   //alert('e.target.className: '+e.target.className+' e.target.dataset.lastchessBoard: '+e.target.dataset.lastchessBoard);
-               alert('tmp_usename: '+tmp_usename);                                        //alert('e.target.dataset.row: '+e.target.dataset.row+' e.target.dataset.column: '+e.target.dataset.column);
+               console.log('tmp_usename: '+tmp_usename);                                        //alert('e.target.dataset.row: '+e.target.dataset.row+' e.target.dataset.column: '+e.target.dataset.column);
         send(ws, {
           type: 'chessBoard',
           //myturn:  e.target.dataset.myturn,
