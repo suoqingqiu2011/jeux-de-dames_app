@@ -1,0 +1,27 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 warn pnpm": {
+    "message": "The store server runs on pnpm v2.25.5. It is recommended to connect with the same version (current is v4.10.0)",
+    "prefix": "/app"
+  },
+  "2 info pnpm": {
+    "message": "A store server is running. All store manipulations are delegated to it.",
+    "prefix": "/app"
+  },
+  "3 error pnpm": {
+    "message": {
+      "code": "ERR_PNPM_UNEXPECTED_VIRTUAL_STORE",
+      "expected": "/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules/.pnpm",
+      "actual": "/app/node_modules/.pnpm",
+      "modulesDir": "/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules"
+    },
+    "err": {
+      "name": "Error",
+      "message": "Unexpected virtual store location",
+      "code": "ERR_PNPM_UNEXPECTED_VIRTUAL_STORE",
+      "stack": "Error: Unexpected virtual store location\n    at Object.checkCompatibility [as default] (/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules/.registry.npmjs.org/pnpm/4.10.0/node_modules/pnpm/lib/node_modules/@pnpm/get-context/lib/checkCompatibility/index.js:21:15)\n    at Promise.all.projects.map (/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules/.registry.npmjs.org/pnpm/4.10.0/node_modules/pnpm/lib/node_modules/@pnpm/get-context/lib/index.js:137:41)\n    at Array.map (<anonymous>)\n    at validateNodeModules (/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules/.registry.npmjs.org/pnpm/4.10.0/node_modules/pnpm/lib/node_modules/@pnpm/get-context/lib/index.js:135:32)\n    at Object.getContext [as default] (/rbd/pnpm-volume/9893d270-7092-455c-a88d-67b1ad9a4b65/node_modules/.registry.npmjs.org/pnpm/4.10.0/node_modules/pnpm/lib/node_modules/@pnpm/get-context/lib/index.js:20:15)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:189:7)"
+    }
+  }
+}
