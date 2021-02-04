@@ -63,7 +63,7 @@ Auceil:
 
 ![xgcalendar screenshot1](1.jpg) 
 
-Inscrire:
+Inscrire (au min inscrire 2 joueurs dans database avec 'db.sqlite3'):
 
 ![xgcalendar screenshot1](2.jpg) 
 
