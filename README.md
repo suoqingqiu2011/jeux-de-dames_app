@@ -1,6 +1,7 @@
 NOM :  
 LIU Bin  
 KONE N'goman Tohaerou
+
 projet: https://jeuxdedames.glitch.me
 
 # Structure du projet 
