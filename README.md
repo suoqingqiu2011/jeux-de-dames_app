@@ -58,4 +58,8 @@ Nous avons fait la partie d'affichage des userlist selon les références du lie
 
 Nous avons fait la partie de connections des users selon les références du lien  <http://defeo.lu/aws/tutorials/websockets>.
 
+![xgcalendar screenshot1](img/1.jpg) 
+![xgcalendar screenshot1](img/2.jpg) 
+![xgcalendar screenshot1](img/3.jpg) 
+![xgcalendar screenshot1](img/4.jpg) 
 
