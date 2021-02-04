@@ -58,15 +58,20 @@ Nous avons fait la partie d'affichage des userlist selon les références du lie
 
 Nous avons fait la partie de connections des users selon les références du lien  <http://defeo.lu/aws/tutorials/websockets>.
 
+
 Auceil:
+
 ![xgcalendar screenshot1](1.jpg) 
 
 Inscrire:
+
 ![xgcalendar screenshot1](2.jpg) 
 
 List de combat (clique ton adversaire):
+
 ![xgcalendar screenshot1](3.jpg) 
 
 Tableau de Dames:
+
 ![xgcalendar screenshot1](4.jpg) 
 
