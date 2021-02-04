@@ -1,7 +1,7 @@
 NOM :  
 LIU Bin  
 KONE N'goman Tohaerou
-
+projet: https://jeuxdedames.glitch.me
 
 # Structure du projet 
 ------------
@@ -56,3 +56,4 @@ Nous avons fait la partie d'affichage des userlist selon les références du lie
 # AJAX , Websocket
 
 Nous avons fait la partie de connections des users selon les références du lien  <http://defeo.lu/aws/tutorials/websockets>.
+
